@@ -8,7 +8,7 @@ public class Player {
   public Player() {
     rect = new PRect(50, width/2, 20, 20);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
-    grav = 14.4/60; jumpPress = millis(); fric = 0.2;
+    grav = 19.4/60; jumpPress = millis(); fric = 0.2;
   }
   
   public void disp() {
@@ -29,9 +29,9 @@ public class Player {
   
   public void move() {
     if (goRight) {
-      acc.x = 0.25;
+      acc.x = 0.3;
     } else if (goLeft) {
-      acc.x = -0.25;
+      acc.x = -0.3;
     } else {
       acc.x = 0;
       if (vel.x > fric - .01) {
