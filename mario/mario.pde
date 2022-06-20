@@ -10,12 +10,22 @@ void keyPressed() {
     player.firstFrame = true;
     player.jumpPress = millis();
   }
+  if (keyCode == RIGHT) {
+    player.goRight = true;
+  } else if (keyCode == LEFT) {
+    player.goLeft = true;
+  }
 }
 
 void keyReleased() {
   if (keyCode == UP) {
     player.jump = false;
     player.forceStop = false;
+  }
+  if (keyCode == RIGHT) {
+    player.goRight = false;
+  } else if (keyCode == LEFT) {
+    player.goLeft = false;
   }
 }
 

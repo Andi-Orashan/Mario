@@ -3,12 +3,12 @@ public class Player {
   public PVector acc, vel; 
   public float fric, grav;
   public int jumpPress;
-  public boolean jump = false, forceStop = false, firstFrame = false, fall = true;;
+  public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   
   public Player() {
     rect = new PRect(50, width/2, 20, 20);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
-    grav = 14.4/60; jumpPress = millis();
+    grav = 14.4/60; jumpPress = millis(); fric = 0.1;
   }
   
   public void disp() {
@@ -25,6 +25,23 @@ public class Player {
         firstFrame = false;
         vel.y -= 6; // change velocity by much more to simulate true jumps
       }
+  }
+  
+  public void move() {
+    if (goRight) {
+      acc.x = 0.25;
+    } else if (goLeft) {
+      acc.x = -0.25;
+    } else {
+      acc.x = 0;
+      if (vel.x > fric - .01) {
+        vel.x -= fric;
+      } else if (vel.x < -fric + .01) {
+        vel.x += fric;
+      }
+    }
+    vel.x += acc.x;
+    vel.x = max(min(vel.x, 4), -4);
   }
   
   public void gravity() {
@@ -46,7 +63,9 @@ public class Player {
     if (jump && !fall) {
       jump();
     }
+    move();
     gravity(); // always update gravity
+    
     rect.left += vel.x;
     rect.top += vel.y;
     rect.update();
