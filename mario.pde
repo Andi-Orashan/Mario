@@ -99,8 +99,11 @@ void draw() {
     textSize(35);
     fill(255);
     text("Bob The Electrician", width/2,120);
-    textSize(18);
+    textSize(20);
     text("Use arrow keys to move",width/2,150);
+    fill(0,0,0);
+    textSize(16);
+    text("Enemies",width/3.5, 170);
     if (keyCode == ENTER) {
       start = true;
     }
