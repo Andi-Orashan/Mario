@@ -1,4 +1,6 @@
 
+int TILESIZE = 40;
+
 void setup() {
   size(800,600);
 }

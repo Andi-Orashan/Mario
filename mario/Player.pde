@@ -6,7 +6,7 @@ public class Player {
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   
   public Player() {
-    rect = new PRect(50, width/2, 40, 40);
+    rect = new PRect(50, width/2, TILESIZE, TILESIZE);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
     grav = 14.4/60; jumpPress = millis(); fric = 0.2;
   }
