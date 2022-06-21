@@ -1,27 +1,17 @@
-<<<<<<< HEAD
-public PImage[] blockImgs = new PImage[2];
-public PImage flagpoleIMG;
-public PImage flagIMG;
-=======
 public PImage[] blockImgs = new PImage[5];
->>>>>>> c8f5acd724676c209d72f534bb4224c2dab6f6bf
 public ArrayList<String> map = new ArrayList<String>();
 public ArrayList<Block> blockList = new ArrayList<Block>();
 String line;
 public int TILESIZE = 40;
 BufferedReader reader;
 Player player = new Player();
-
 public PImage open;
 public PImage bg;
 public PImage flagpoleIMG;
 public PImage flagIMG;
 public boolean start = false;
 
-<<<<<<< HEAD
-=======
 public Flag flagpole = new Flag(-10000000, -1000000, 'f');
->>>>>>> c8f5acd724676c209d72f534bb4224c2dab6f6bf
 
 void setup() {
   size(800,600);
@@ -32,15 +22,10 @@ void setup() {
     for (int x = 0; x < 20; x++) {
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F') {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
-<<<<<<< HEAD
-      } if (map.get(y).charAt(x) == 'F') {
-      } 
-=======
       }
       if (map.get(y).charAt(x) == 'F') {
         flagpole = (new Flag(x*40, y*40, map.get(y).charAt(x)));
       }
->>>>>>> c8f5acd724676c209d72f534bb4224c2dab6f6bf
     }
   }
 }
@@ -49,13 +34,10 @@ void loadImages() {
   open = loadImage("image.png");
   bg = loadImage("mario.gif");
   blockImgs[0] = loadImage("crackedTile.png");
-<<<<<<< HEAD
-=======
   blockImgs[1] = loadImage("bigTile.png");
   blockImgs[2] = loadImage("brickTile.png");
   blockImgs[3] = loadImage("emptyMysteryTile.png");
   blockImgs[4] = loadImage("mysteryTile.png");
->>>>>>> c8f5acd724676c209d72f534bb4224c2dab6f6bf
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
 }
@@ -105,12 +87,7 @@ void draw() {
   if (!start) {
     image(open, 0, 0);
     fill(7,113,20);
-    rect(280, 350,230,50);
-    fill(0,0,0);
-    textSize(20);
-    text("Press Enter to Start", 315,380);
-    textSize(50);
-    text("Bob The Electrician", 200,120);
+    rect(280, 350,230,100);
     if (keyCode == ENTER) {
       start = true;
     }
@@ -126,5 +103,4 @@ void draw() {
     }
     player.disp();
   }
-
 }
