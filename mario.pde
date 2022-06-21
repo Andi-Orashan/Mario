@@ -28,6 +28,7 @@ void setup() {
       }
       if (map.get(y).charAt(x) == 'F') {
         flagpole = (new Flag(x*40, y*40, map.get(y).charAt(x)));
+        flagpole.img.resize(40, 400);
       }
     }
   }
@@ -113,7 +114,7 @@ void draw() {
       block.img.resize(TILESIZE, TILESIZE);
       block.disp();
     }
-    flagpole.img.resize(40, 400);
+    
     flagpole.disp();
     player.disp();
   }
