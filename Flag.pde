@@ -11,7 +11,6 @@ public class Flag {
   
   public void disp() {
     image(flagpoleIMG, rect.x, rect.y-400);
-    text(str(won), 10, 10);
     if (player.rect.x >= rect.y) {
       won = true;
     }

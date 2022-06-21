@@ -95,9 +95,9 @@ void draw() {
       start = true;
     }
   } else {
-    background(0);
-    bg.resize(800, 600);
-    image(bg, 0, 0);
+    background(0, 140, 255);
+    //bg.resize(800, 600);
+    //image(bg, 0, 0);
     fill(255);
     player.update();
     for (Block block : blockList) {
