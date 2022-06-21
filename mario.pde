@@ -11,7 +11,7 @@ public PImage flagpoleIMG;
 public PImage flagIMG;
 public boolean start = false;
 
-public Flag flagpole = new Flag(-10000000, -1000000, 'f');
+public Flag flagpole = new Flag(80, 80, 'f');
 
 void setup() {
   size(800,600);
@@ -104,6 +104,7 @@ void draw() {
       block.img.resize(TILESIZE, TILESIZE);
       block.disp();
     }
+    flagpole.disp();
     player.disp();
   }
 }
