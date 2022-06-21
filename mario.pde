@@ -91,6 +91,8 @@ void draw() {
     fill(0,0,0);
     textSize(25);
     text("Press Enter to Play", 300, 355);
+    textSize(50);
+    text("Bob The Electrician",195,120);
     if (keyCode == ENTER) {
       start = true;
     }
