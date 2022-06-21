@@ -10,7 +10,8 @@ public class Flag {
   }
   
   public void disp() {
-    image(flagpoleIMG, rect.x, rect.y-400);
+
+    image(flagpoleIMG, rect.x, rect.y-360);
     if (player.rect.x >= rect.y) {
       won = true;
     }

@@ -111,6 +111,7 @@ void draw() {
       block.img.resize(TILESIZE, TILESIZE);
       block.disp();
     }
+    flagpole.img.resize(40, 400);
     flagpole.disp();
     player.disp();
   }
