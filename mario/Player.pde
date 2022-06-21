@@ -6,9 +6,9 @@ public class Player {
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   
   public Player() {
-    rect = new PRect(50, width/2, 20, 20);
+    rect = new PRect(50, width/2, 40, 40);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
-    grav = 19.4/60; jumpPress = millis(); fric = 0.2;
+    grav = 14.4/60; jumpPress = millis(); fric = 0.2;
   }
   
   public void disp() {
@@ -41,7 +41,7 @@ public class Player {
       }
     }
     vel.x += acc.x;
-    vel.x = max(min(vel.x, 4), -4);
+    vel.x = max(min(vel.x, 6), -6); // keeps velocity between 6 and -6
   }
   
   public void gravity() {
