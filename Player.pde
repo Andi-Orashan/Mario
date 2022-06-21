@@ -16,15 +16,17 @@ public class Player {
   }
   
   public void jump() {
-    if (jumpPress + 300 <= millis())  {// max jump length is .3 seconds
-        jump = false;
-        forceStop = true; // make sure player cannot continue holding to jump
-      }
-      vel.y -= 0.3;
-      if (firstFrame) { // if first frame in jump:
-        firstFrame = false;
-        vel.y -= 6; // change velocity by much more to simulate true jumps
-      }
+    if (!blockTopCollision()) {
+      if (jumpPress + 300 <= millis())  {// max jump length is .3 seconds
+          jump = false;
+          forceStop = true; // make sure player cannot continue holding to jump
+        }
+        vel.y -= 0.3;
+        if (firstFrame) { // if first frame in jump:
+          firstFrame = false;
+          vel.y -= 6; // change velocity by much more to simulate true jumps
+        }
+    }
   }
   
   public boolean blockTopCollision() {
@@ -65,7 +67,7 @@ public class Player {
     for (Block block : blockList) {
       if (rect.bottom + vel.y > block.rect.centery && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top < block.rect.bottom) {
         vel.y = 0;
-        rect.top = block.rect.bottom;
+        //rect.top = block.rect.bottom;
         return true;
       }
     }
