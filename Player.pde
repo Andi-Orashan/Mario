@@ -29,7 +29,7 @@ public class Player {
   
   public boolean blockTopCollision() {
     for (Block block : blockList) {
-      if (rect.bottom + vel.y > block.rect.top && rect.right > block.rect.left && rect.left < block.rect.right) {
+      if (rect.bottom + vel.y > block.rect.top && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top < block.rect.centery) {
         fall = false;
         vel.y = 0;
         if (rect.bottom > block.rect.top) {
@@ -41,10 +41,41 @@ public class Player {
     return false;
   }
   
+  public boolean blockRightCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom > block.rect.top + 1 && rect.right + vel.x > block.rect.left && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
+        vel.x = 0;
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean blockLeftCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + vel.x - 1 < block.rect.right && rect.top < block.rect.bottom - 1) {
+        vel.x = 0;
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean blockBottomCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom + vel.y > block.rect.centery && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top < block.rect.bottom) {
+        vel.y = 0;
+        rect.top = block.rect.bottom;
+        return true;
+      }
+    }
+    return false;
+  }
+  
   public void move() {
-    if (goRight) {
+    if (goRight && !blockRightCollision()) {
       acc.x = 0.3;
-    } else if (goLeft) {
+    } else if (goLeft && !blockLeftCollision()) {
       acc.x = -0.3;
     } else {
       acc.x = 0;
@@ -71,7 +102,9 @@ public class Player {
     if (jump && !fall) {
       jump();
     }
+    
     move();
+    blockBottomCollision();
     blockTopCollision();
     gravity(); // always update gravity
     
