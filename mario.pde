@@ -1,13 +1,43 @@
 public PImage[] blockImgs = new PImage[2];
+public ArrayList<String> map = new ArrayList<String>();
+public ArrayList<Block> blockList = new ArrayList<Block>();
+String line;
 public int TILESIZE = 40;
+BufferedReader reader;
 Player player = new Player();
 
 void setup() {
   size(800,600);
+  reader = createReader("map.txt");
   loadImages();
+  loadMap();
+  for (int y = 0; y < 15; y++) {
+    for (int x = 0; x < 20; x++) {
+      if (map.get(y).charAt(x) == 'G') {
+        blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
+      }
+    }
+  }
 }
+
 void loadImages() {
   blockImgs[0] = loadImage("crackedTile.png");
+}
+
+void loadMap() {
+  for (int i = 0; i < 15; i++) {
+    try {
+      line = reader.readLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+      line = null;
+    }
+    if (line == null) {
+      exit();
+    } else {
+      map.add(line);
+    }
+  }
 }
 
 void keyPressed() {
@@ -38,5 +68,9 @@ void keyReleased() {
 void draw() {
   background(0);
   player.update();
+  for (Block block : blockList) {
+    block.img.resize(TILESIZE, TILESIZE);
+    block.disp();
+  }
   player.disp();
 }
