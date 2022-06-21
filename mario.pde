@@ -5,6 +5,8 @@ String line;
 public int TILESIZE = 40;
 BufferedReader reader;
 Player player = new Player();
+public PImage open;
+public boolean start = false;
 
 void setup() {
   size(800,600);
@@ -21,6 +23,7 @@ void setup() {
 }
 
 void loadImages() {
+  open = loadImage("image.png");
   blockImgs[0] = loadImage("crackedTile.png");
 }
 
@@ -66,11 +69,21 @@ void keyReleased() {
 }
 
 void draw() {
-  background(0, 140, 255);
-  player.update();
-  for (Block block : blockList) {
-    block.img.resize(TILESIZE, TILESIZE);
-    block.disp();
+  if (!start) {
+    image(open, 0, 0);
+    fill(7,113,20);
+    rect(280, 350,230,100);
+    if (keyCode == ENTER) {
+      start = true;
+    }
+  } else {
+    background(0, 140, 255);
+    fill(255);
+    player.update();
+    for (Block block : blockList) {
+      block.img.resize(TILESIZE, TILESIZE);
+      block.disp();
+    }
+    player.disp();
   }
-  player.disp();
 }
