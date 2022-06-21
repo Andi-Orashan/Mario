@@ -8,7 +8,7 @@ public class Player {
   public Player() {
     rect = new PRect(50, width/2, TILESIZE, TILESIZE);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
-    grav = 14.4/60; jumpPress = millis(); fric = 0.2;
+    grav = 17.4/60; jumpPress = millis(); fric = 0.2;
   }
   
   public void disp() {
@@ -25,6 +25,20 @@ public class Player {
         firstFrame = false;
         vel.y -= 6; // change velocity by much more to simulate true jumps
       }
+  }
+  
+  public boolean blockTopCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom + vel.y > block.rect.top && rect.right > block.rect.left && rect.left < block.rect.right) {
+        fall = false;
+        vel.y = 0;
+        if (rect.bottom > block.rect.top) {
+          rect.top = block.rect.top - rect.ySize;
+        }
+        return true;
+      }
+    }
+    return false;
   }
   
   public void move() {
@@ -45,17 +59,11 @@ public class Player {
   }
   
   public void gravity() {
-    if (rect.bottom + vel.y < height) { // check if the player is above the ground
+    if (!blockTopCollision()) { // check if the player is above the ground
       vel.y += grav; // continually add increase velocity
       if (!jump) { // if not jumping, fall
         fall = true;
       }
-    } else {
-      vel.y = 0; // if on the ground, don't fall
-      fall = false;
-    }
-    if (rect.bottom > height) {
-      rect.top = height - rect.ySize;
     }
   }
   
@@ -64,6 +72,7 @@ public class Player {
       jump();
     }
     move();
+    blockTopCollision();
     gravity(); // always update gravity
     
     rect.left += vel.x;

@@ -66,7 +66,7 @@ void keyReleased() {
 }
 
 void draw() {
-  background(0);
+  background(0, 140, 255);
   player.update();
   for (Block block : blockList) {
     block.img.resize(TILESIZE, TILESIZE);
