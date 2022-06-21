@@ -7,33 +7,10 @@ String line;
 public int TILESIZE = 40;
 BufferedReader reader;
 Player player = new Player();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-public Flag flagpole = new Flag(-10000000, -1000000, 'f');
 
-=======
 public PImage open;
 public boolean start = false;
->>>>>>> 24f59950e24655afa18e187a2229f0d8a5b34cee
-=======
-public PImage open;
-public boolean start = false;
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
-=======
-public PImage open;
-public boolean start = false;
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
-=======
-public PImage open;
-public boolean start = false;
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
-=======
-public PImage open;
-public boolean start = false;
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
+
 
 void setup() {
   size(800,600);
@@ -45,7 +22,6 @@ void setup() {
       if (map.get(y).charAt(x) == 'G') {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
       } if (map.get(y).charAt(x) == 'F') {
-        flagpole = (new Flag(x*40, y*40, map.get(y).charAt(x)));
       } 
     }
   }
@@ -117,23 +93,5 @@ void draw() {
     }
     player.disp();
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  flagpole.img.resize(40, 400);
-  flagpole.disp();
-  player.disp();
-  
-=======
->>>>>>> 24f59950e24655afa18e187a2229f0d8a5b34cee
-=======
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
-=======
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
-=======
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
-=======
->>>>>>> f86cc055b77d6cdc82f861360bf4f2dbfebf4114
+
 }
