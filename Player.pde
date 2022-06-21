@@ -8,7 +8,7 @@ public class Player {
   public Player() {
     rect = new PRect(50, width/2, TILESIZE, TILESIZE);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
-    grav = 14.4/60; jumpPress = millis(); fric = 0.2;
+    grav = 17.4/60; jumpPress = millis(); fric = 0.2;
   }
   
   public void disp() {
@@ -27,10 +27,55 @@ public class Player {
       }
   }
   
+  public boolean blockTopCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom + vel.y > block.rect.top && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top < block.rect.centery) {
+        fall = false;
+        vel.y = 0;
+        if (rect.bottom > block.rect.top) {
+          rect.top = block.rect.top - rect.ySize;
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean blockRightCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom > block.rect.top + 1 && rect.right + vel.x > block.rect.left && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
+        vel.x = 0;
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean blockLeftCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + vel.x - 1 < block.rect.right && rect.top < block.rect.bottom - 1) {
+        vel.x = 0;
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean blockBottomCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom + vel.y > block.rect.centery && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top < block.rect.bottom) {
+        vel.y = 0;
+        rect.top = block.rect.bottom;
+        return true;
+      }
+    }
+    return false;
+  }
+  
   public void move() {
-    if (goRight) {
+    if (goRight && !blockRightCollision()) {
       acc.x = 0.3;
-    } else if (goLeft) {
+    } else if (goLeft && !blockLeftCollision()) {
       acc.x = -0.3;
     } else {
       acc.x = 0;
@@ -45,17 +90,11 @@ public class Player {
   }
   
   public void gravity() {
-    if (rect.bottom + vel.y < height) { // check if the player is above the ground
+    if (!blockTopCollision()) { // check if the player is above the ground
       vel.y += grav; // continually add increase velocity
       if (!jump) { // if not jumping, fall
         fall = true;
       }
-    } else {
-      vel.y = 0; // if on the ground, don't fall
-      fall = false;
-    }
-    if (rect.bottom > height) {
-      rect.top = height - rect.ySize;
     }
   }
   
@@ -63,7 +102,10 @@ public class Player {
     if (jump && !fall) {
       jump();
     }
+    
     move();
+    blockBottomCollision();
+    blockTopCollision();
     gravity(); // always update gravity
     
     rect.left += vel.x;

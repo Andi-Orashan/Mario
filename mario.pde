@@ -7,8 +7,13 @@ String line;
 public int TILESIZE = 40;
 BufferedReader reader;
 Player player = new Player();
+<<<<<<< HEAD
 public Flag flagpole = new Flag(-10000000, -1000000, 'f');
 
+=======
+public PImage open;
+public boolean start = false;
+>>>>>>> 24f59950e24655afa18e187a2229f0d8a5b34cee
 
 void setup() {
   size(800,600);
@@ -27,6 +32,7 @@ void setup() {
 }
 
 void loadImages() {
+  open = loadImage("image.png");
   blockImgs[0] = loadImage("crackedTile.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
@@ -74,14 +80,28 @@ void keyReleased() {
 }
 
 void draw() {
-  background(0);
-  player.update();
-  for (Block block : blockList) {
-    block.img.resize(TILESIZE, TILESIZE);
-    block.disp();
+  if (!start) {
+    image(open, 0, 0);
+    fill(7,113,20);
+    rect(280, 350,230,100);
+    if (keyCode == ENTER) {
+      start = true;
+    }
+  } else {
+    background(0, 140, 255);
+    fill(255);
+    player.update();
+    for (Block block : blockList) {
+      block.img.resize(TILESIZE, TILESIZE);
+      block.disp();
+    }
+    player.disp();
   }
+<<<<<<< HEAD
   flagpole.img.resize(40, 400);
   flagpole.disp();
   player.disp();
   
+=======
+>>>>>>> 24f59950e24655afa18e187a2229f0d8a5b34cee
 }
