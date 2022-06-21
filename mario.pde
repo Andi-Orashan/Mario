@@ -32,7 +32,7 @@ void setup() {
 
 void loadImages() {
   open = loadImage("image.png");
-  bg = loadImage("mario.gif");
+  bg = loadImage("image.gif");
   blockImgs[0] = loadImage("crackedTile.png");
   blockImgs[1] = loadImage("bigTile.png");
   blockImgs[2] = loadImage("brickTile.png");
@@ -94,7 +94,7 @@ void draw() {
   } else {
     background(0);
     bg.resize(800, 600);
-    //image(bg, 0, 0);
+    image(bg, 0, 0);
     fill(255);
     player.update();
     for (Block block : blockList) {
