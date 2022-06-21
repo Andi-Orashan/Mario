@@ -29,6 +29,7 @@ void setup() {
       if (map.get(y).charAt(x) == 'F') {
         flagpole = (new Flag(x*40, y*40, map.get(y).charAt(x)));
         flagpole.img.resize(40, 400);
+        flagIMG.resize(40,40);
       }
     }
   }
