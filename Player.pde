@@ -43,7 +43,7 @@ public class Player {
   
   public boolean blockRightCollision() {
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right + vel.x > block.rect.left && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right + vel.x + 0.2 > block.rect.left && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
         vel.x = 0;
         return true;
       }
@@ -53,7 +53,7 @@ public class Player {
   
   public boolean blockLeftCollision() {
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + vel.x - 1 < block.rect.right && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + vel.x - 0.2 < block.rect.right && rect.top < block.rect.bottom - 1) {
         vel.x = 0;
         return true;
       }

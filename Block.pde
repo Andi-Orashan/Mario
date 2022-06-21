@@ -9,6 +9,19 @@ public class Block {
     switch (type) {
       case 'G':
         img = blockImgs[0];
+        break;
+      case 'B':
+        img = blockImgs[2];
+        break;
+      case 'M':
+        img = blockImgs[4];
+        break;
+      case 'E':
+        img = blockImgs[3];
+        break;
+      case 'D':
+        img = blockImgs[1];
+        break;
     }
   }
   
