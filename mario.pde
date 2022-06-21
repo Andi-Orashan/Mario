@@ -9,6 +9,9 @@ public PImage open;
 public PImage bg;
 public PImage flagpoleIMG;
 public PImage flagIMG;
+public PImage goomba;
+public PImage koopa;
+public PImage shell;
 public boolean start = false;
 PFont font;
 
@@ -45,6 +48,9 @@ void loadImages() {
   blockImgs[4] = loadImage("mysteryTile.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
+  goomba = loadImage("goomba.png");
+  koopa = loadImage("koopa.png");
+  shell = loadImage("koopaShell.png");
 }
 
 void loadMap() {
@@ -107,6 +113,9 @@ void draw() {
     fill(0);
     textSize(18);
     text("Enemies",width/3.5, 170);
+    image(goomba, 200,180);
+    image(koopa, 250,200);
+    image(shell,200, 220);
     if (keyCode == ENTER) {
       start = true;
     }
