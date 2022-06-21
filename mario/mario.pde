@@ -1,6 +1,7 @@
-
 public int TILESIZE = 40;
+public boolean start = false;
 public PImage[] blockImgs = new PImage[3];
+PImage open;
 
 void setup() {
   size(800,600);
@@ -9,6 +10,7 @@ void setup() {
 
 void loadImages() {
   blockImgs[0] = loadImage("crackedTile.png");
+  open = loadImage("image.png");
 }
 
 Player player = new Player();
@@ -39,8 +41,18 @@ void keyReleased() {
 }
 
 void draw() {
-  background(0);
-  player.update();
-  player.disp();
-  print(blockImgs[0]);
+  //println(start);
+  if (!start) {
+    image(open, 0, 0);
+    fill(7,113,20);
+    rect(280, 350,230,100);
+    if (keyCode == ENTER) {
+      start = true;
+    }
+  } else {
+    background(0, 128, 255);
+    player.update();
+    player.disp();
+    print(blockImgs[0]);
+  }
 }
