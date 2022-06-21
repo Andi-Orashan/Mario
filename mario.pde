@@ -72,7 +72,12 @@ void draw() {
   if (!start) {
     image(open, 0, 0);
     fill(7,113,20);
-    rect(280, 350,230,100);
+    rect(280, 350,230,50);
+    fill(0,0,0);
+    textSize(20);
+    text("Press Enter to Start", 315,380);
+    textSize(50);
+    text("Bob The Electrician", 200,120);
     if (keyCode == ENTER) {
       start = true;
     }
