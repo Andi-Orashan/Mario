@@ -1,10 +1,14 @@
 public PImage[] blockImgs = new PImage[2];
+public PImage flagpoleIMG;
+public PImage flagIMG;
 public ArrayList<String> map = new ArrayList<String>();
 public ArrayList<Block> blockList = new ArrayList<Block>();
 String line;
 public int TILESIZE = 40;
 BufferedReader reader;
 Player player = new Player();
+public Flag flagpole = new Flag(-10000000, -1000000, 'f');
+
 
 void setup() {
   size(800,600);
@@ -15,13 +19,17 @@ void setup() {
     for (int x = 0; x < 20; x++) {
       if (map.get(y).charAt(x) == 'G') {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
-      }
+      } if (map.get(y).charAt(x) == 'F') {
+        flagpole = (new Flag(x*40, y*40, map.get(y).charAt(x)));
+      } 
     }
   }
 }
 
 void loadImages() {
   blockImgs[0] = loadImage("crackedTile.png");
+  flagpoleIMG = loadImage("flagpole.png");
+  flagIMG = loadImage("flag.png");
 }
 
 void loadMap() {
@@ -72,5 +80,8 @@ void draw() {
     block.img.resize(TILESIZE, TILESIZE);
     block.disp();
   }
+  flagpole.img.resize(40, 400);
+  flagpole.disp();
   player.disp();
+  
 }
