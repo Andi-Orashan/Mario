@@ -1,16 +1,14 @@
+public PImage[] blockImgs = new PImage[2];
 public int TILESIZE = 40;
-public PImage[] blockImgs = new PImage[3];
+Player player = new Player();
 
 void setup() {
   size(800,600);
   loadImages();
 }
-
 void loadImages() {
   blockImgs[0] = loadImage("crackedTile.png");
 }
-
-Player player = new Player();
 
 void keyPressed() {
   if (keyCode == UP && !player.forceStop && !player.jump) {
@@ -41,5 +39,4 @@ void draw() {
   background(0);
   player.update();
   player.disp();
-  print(blockImgs[0]);
 }

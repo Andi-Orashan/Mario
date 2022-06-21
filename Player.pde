@@ -12,7 +12,7 @@ public class Player {
   }
   
   public void disp() {
-    rect(rect.x, rect.y, rect.xSize, rect.ySize);
+    rect(rect.left, rect.top, rect.xSize, rect.ySize);
   }
   
   public void jump() {
