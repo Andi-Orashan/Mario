@@ -1,0 +1,19 @@
+public class Flag {
+  PRect rect;
+  char type;
+  PImage img;
+  public boolean won;
+  
+  public Flag(int x, int y, char type) {
+    rect = new PRect(x, y, 40, 400);
+    img = flagpoleIMG;
+  }
+  
+  public void disp() {
+
+    image(flagpoleIMG, rect.x, rect.y-360);
+    if (player.rect.x >= rect.y) {
+      won = true;
+    }
+  }
+}
