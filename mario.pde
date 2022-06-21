@@ -10,10 +10,13 @@ public PImage bg;
 public PImage flagpoleIMG;
 public PImage flagIMG;
 public boolean start = false;
+PFont font;
 
 public Flag flagpole = new Flag(80, 80, 'f');
 
 void setup() {
+  font = loadFont("LucidaSans-Typewriter-25.vlw");
+  textAlign(CENTER, CENTER);
   size(800,600);
   reader = createReader("map.txt");
   loadImages();
@@ -85,14 +88,16 @@ void keyReleased() {
 
 void draw() {
   if (!start) {
+    textFont(font, 40);
     image(open, 0, 0);
     fill(7,113,20);
     rect(280, 325,230,50);
     fill(0,0,0);
-    textSize(25);
-    text("Press Enter to Play", 300, 355);
-    textSize(50);
-    text("Bob The Electrician",195,120);
+    textSize(18);
+    text("Press Enter to Play", 395, 350);
+    textSize(35);
+    fill(255);
+    text("Bob The Electrician", width/2,120);
     if (keyCode == ENTER) {
       start = true;
     }
