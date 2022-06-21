@@ -20,7 +20,7 @@ public class Flag {
       print(flagHeight);
     }
     if (won == true && flagHeight <= 300) {
-      flagHeight++;
+      flagHeight += 3;
     }
   }
 }

@@ -4,6 +4,8 @@ public class Player {
   public float fric, grav;
   public int jumpPress;
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
+  public int direction = 0;
+  public boolean big = false;
   
   public Player() {
     rect = new PRect(50, width/2, TILESIZE, TILESIZE);
@@ -12,6 +14,9 @@ public class Player {
   }
   
   public void disp() {
+    if (vel.x > 0) {
+      
+    }
     rect(rect.left, rect.top, rect.xSize, rect.ySize);
   }
   
