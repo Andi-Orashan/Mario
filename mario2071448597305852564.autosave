@@ -32,7 +32,7 @@ void setup() {
 
 void loadImages() {
   open = loadImage("image.png");
-  bg = loadImage("image.gif");
+  bg = loadImage("mario.gif");
   blockImgs[0] = loadImage("crackedTile.png");
   blockImgs[1] = loadImage("bigTile.png");
   blockImgs[2] = loadImage("brickTile.png");
@@ -89,15 +89,15 @@ void draw() {
     fill(7,113,20);
     rect(280, 325,230,50);
     fill(0,0,0);
-    textSize(25);
-    text("Press Enter to Play", 300, 355);
+    textSize(20);
+    text("Press Enter to Play", 170, 
     if (keyCode == ENTER) {
       start = true;
     }
   } else {
     background(0);
     bg.resize(800, 600);
-    image(bg, 0, 0);
+    //image(bg, 0, 0);
     fill(255);
     player.update();
     for (Block block : blockList) {
