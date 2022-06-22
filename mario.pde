@@ -79,16 +79,16 @@ void loadImages() { //self explanatory.
   gImgs[2] = loadImage("goomba-anime3.png");
   gImgs[3] = loadImage("goomba-anime4.png");
   gImgs[4] = loadImage("goomba-SS.png");
-  kImgs[0][0] = loadImage("koopa anime1.png");
-  kImgs[0][1] = loadImage("koopa anime2.png");
-  kImgs[0][2] = loadImage("koopa anime3.png");
-  kImgs[0][3] = loadImage("koopa anime4.png");
-  kImgs[0][4] = loadImage("koopa anime5.png");
-  kImgs[1][0] = loadImage("koopa-flip-anime1.png");
-  kImgs[1][1] = loadImage("koopa-flip-anime2.png");
-  kImgs[1][2] = loadImage("koopa-flip-anime3.png");
-  kImgs[1][3] = loadImage("koopa-flip-anime4.png");
-  kImgs[1][4] = loadImage("koopa-flip-anime5.png");
+  kImgs[1][0] = loadImage("koopa anime 1.png");
+  kImgs[1][1] = loadImage("koopa anime 2.png");
+  kImgs[1][2] = loadImage("koopa anime 3.png");
+  kImgs[1][3] = loadImage("koopa anime 4.png");
+  kImgs[1][4] = loadImage("koopa anime 5.png");
+  kImgs[0][0] = loadImage("koopa-flip-anime-1.png");
+  kImgs[0][1] = loadImage("koopa-flip-anime-2.png");
+  kImgs[0][2] = loadImage("koopa-flip-anime-3.png");
+  kImgs[0][3] = loadImage("koopa-flip-anime-4.png");
+  kImgs[0][4] = loadImage("koopa-flip-anime-5.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
   coinIMG = loadImage("coin.png");
@@ -175,12 +175,18 @@ void draw() {
     for (Goomba goomba : goombaList) {
       goomba.update();
     }
+    for (Koopa koopa : koopaList) {
+      koopa.update();
+    }
     for (Block block : blockList) {
       block.img.resize(TILESIZE, TILESIZE);
       block.disp();
     }
     for (Goomba goomba : goombaList) {
       goomba.disp();
+    }
+    for (Koopa koopa : koopaList) {
+      koopa.disp();
     }
     for (PowerUp power : powerList) {
       power.disp();
