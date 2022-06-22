@@ -1,7 +1,7 @@
 public class Player {
   public PRect rect;
   public PVector acc, vel; 
-  public float fric, grav;
+  public float fric, grav; //things moving against the players movement. 
   public int jumpPress;
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   public int dir = 0, frame = 0, framePause = millis();
@@ -14,9 +14,14 @@ public class Player {
   }
   
   public void disp() {
-    // rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize);
+    // rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
+    //determines which sprites to use. 
     if (vel.x > 0.1 && (!jump && !fall)) {
+<<<<<<< Updated upstream
       pImgs[0][frame].resize(36, 48);
+=======
+      pImgs[0][frame].resize(24, 32); //facing right walk
+>>>>>>> Stashed changes
       dir = 0;
       image(pImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
       if (framePause + 50 <= millis()) {
@@ -24,16 +29,22 @@ public class Player {
         frame %= 4;
         framePause = millis();
       }
+<<<<<<< Updated upstream
     } else if (vel.x < -0.1 && (!jump && !fall)) {
       pImgs[1][frame].resize(36, 48);
       image(pImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
+=======
+    } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
+      pImgs[1][frame].resize(24, 32);
+      image(pImgs[1][frame], rect.left - 4 - cameraOffset, rect.top);
+>>>>>>> Stashed changes
       dir = 1;
       if (framePause + 50 <= millis()) {
         frame += 1;
         frame %= 4;
         framePause = millis();
       }
-    } else if (!jump && !fall) {
+    } else if (!jump && !fall) {// no movement catch all
       if (dir == 0) {
         pImgs[0][1].resize(36, 48);
         image(pImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
@@ -42,19 +53,25 @@ public class Player {
         image(pImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
       }
     }
-    if (jump || fall) {
+    if (jump || fall) { //Are you jumping or falling to the right
       if (vel.x >= 0) {
+<<<<<<< Updated upstream
         pImgs[2][1].resize(36, 48);
         image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
       } else {
         pImgs[2][0].resize(36, 48);
         image(pImgs[2][0], rect.left - 6 - cameraOffset, rect.top);
+=======
+        image(pImgs[2][1], rect.left - 4 - cameraOffset, rect.top);
+      } else { // are you jump falling to the left. 
+        image(pImgs[2][0], rect.left - 4 - cameraOffset, rect.top);
+>>>>>>> Stashed changes
       }
     }
   }
   
   public void jump() {
-    if (!blockTopCollision()) {
+    if (!blockTopCollision()) {  //all the jump stuff
       if (jumpPress + 300 <= millis())  {// max jump length is .3 seconds
           jump = false;
           forceStop = true; // make sure player cannot continue holding to jump
@@ -69,7 +86,7 @@ public class Player {
     }
   }
   
-  public boolean blockTopCollision() {
+  public boolean blockTopCollision() { // have you collided with the top of the block?
     for (Block block : blockList) {
       if (rect.bottom + vel.y > block.rect.top && rect.right > block.rect.left + 2 && rect.left < block.rect.right - 2 && rect.top < block.rect.top - TILESIZE / 8) {
         fall = false;
@@ -83,7 +100,7 @@ public class Player {
     return false;
   }
   
-  public boolean blockRightCollision() {
+  public boolean blockRightCollision() {// have you hit the 
     for (Block block : blockList) {
       if (rect.bottom > block.rect.top + 1 && rect.right + vel.x > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
         vel.x = 0;

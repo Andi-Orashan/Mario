@@ -2,7 +2,7 @@ public class Block {
   PRect rect;
   char type;
   PImage img;
-  
+  // which block is this? and lets grab its sprites. Hitboxes are somewhereelse. 
   public Block(int x, int y, char type) {
     rect = new PRect(x, y, TILESIZE, TILESIZE);
     this.type = type;
@@ -24,7 +24,7 @@ public class Block {
         break;
     }
   }
-  
+  //displays the picture. 
   public void disp() {
     image(img, rect.x - cameraOffset, rect.y);
   }
