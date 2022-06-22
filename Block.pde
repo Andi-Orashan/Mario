@@ -6,20 +6,20 @@ public class Block {
   public Block(int x, int y, char type) {
     rect = new PRect(x, y, TILESIZE, TILESIZE);
     this.type = type;
-    switch (type) {
-      case 'G':
+    switch (type) { 
+      case 'G': // ground
         img = blockImgs[0];
         break;
-      case 'B':
+      case 'B': // bricks
         img = blockImgs[2];
         break;
-      case 'M':
+      case 'M': // yellow block
         img = blockImgs[4];
         break;
-      case 'E':
+      case 'E': // empty block
         img = blockImgs[3];
         break;
-      case 'D':
+      case 'D': // other block 
         img = blockImgs[1];
         break;
     }
