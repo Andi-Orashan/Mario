@@ -111,6 +111,7 @@ public class Player {
         //rect.top = block.rect.bottom;
         if (block.full == true) {
           powerList.add(new PowerUp(block.rect.centerx, block.rect.centery-TILESIZE, floor(random(2))));
+          block.full = false;
         }
         return true;
       }
