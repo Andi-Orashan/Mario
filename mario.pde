@@ -19,6 +19,7 @@ public PImage coinIMG;
 Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
 public PImage[] gImgs = new PImage[5];
+public PImage[][] kImgs = new PImage[2][5];
 public PImage[] powIMG = new PImage[4];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
