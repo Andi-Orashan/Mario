@@ -122,13 +122,14 @@ void draw() {
     text("Use arrow keys to move",width/2,150);
     fill(111);
     rect(175,175,450,110);
-    fill(0);
+    fill(198,6,6);
     textSize(18);
     text("Enemies",width/3.5, 190);
     image(goombaIMG, 200,210);
     image(koopaIMG, 230,230);
     image(shell, 200,250);
-    text("PowerUps", 330,190);
+    fill(38,142,31);
+    text("Bob with PowerUps",380,190);
     if (keyCode == ENTER) {
       start = true;
     }
