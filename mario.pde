@@ -14,11 +14,11 @@ public PImage flagIMG; //flag image
 public PImage goombaIMG; //goomba picture
 public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
+Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
+public PImage[] gImgs = new PImage[4];
 public boolean start = false; //Whether or not to show start image
 PFont font;// text font
-Flag flagpole; 
- 
 
 void setup() {
   //creates the text
@@ -41,7 +41,7 @@ void setup() {
         flagIMG.resize(40,40);
       }
       if (map.get(y).charAt(x) == 'g') {
-        goombaList.add(new Goomba(x*40, 6*40));
+        goombaList.add(new Goomba(x*40, y*40));
       }
     }
   }
@@ -65,9 +65,13 @@ void loadImages() { //self explanatory.
   pImgs[1][3] = loadImage("shortBob-flipped-anime4.png");
   pImgs[2][0] = loadImage("Rjump.png");
   pImgs[2][1] = loadImage("Ljump.png");
+  gImgs[0] = loadImage("goomba-anime1.png");
+  gImgs[1] = loadImage("goomba-anime2.png");
+  gImgs[2] = loadImage("goomba-anime3.png");
+  gImgs[3] = loadImage("goomba-anime4.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
-  goombaIMG = loadImage("Final Gomba.png");
+  goombaIMG = loadImage("goomba.png");
   koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");
 }
@@ -144,7 +148,7 @@ void draw() {
   } else { //Draws the player, draws the map, drawsenemies. 
     background(0, 140, 255);
     //bg.resize(800, 600);
-    image(bg, 0 - cameraOffset / 3, 0);
+    image(bg, 0 - cameraOffset / 4, 0);
     fill(255);
     player.update();
     for (Goomba goomba : goombaList) {
