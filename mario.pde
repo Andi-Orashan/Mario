@@ -168,6 +168,9 @@ void draw() {
     for (Goomba goomba : goombaList) {
       goomba.disp();
     }
+    for (PowerUp power : powerList) {
+      power.disp();
+    }
     flagpole.disp();
     player.disp();
   }
