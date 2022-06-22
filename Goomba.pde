@@ -2,12 +2,21 @@ public class Goomba {
   PRect rect;
   public float velX, velY, accY, grav;
   public int frame, framePause;
+  public boolean dead;
   
   public Goomba(float x, float y) {
     rect = new PRect(x, y, 32, 30);
+    dead = false;
     grav = 17.4/60;
     velX = -2;
     frame = 0; framePause = millis();
+  }
+  
+  public void squash() {
+    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left && player.rect.left < rect.right && !dead) {
+      dead = true;
+      player.vel.y = min(-4, player.vel.y * 1.5);
+    }
   }
   
   public boolean blockRightCollision() {// have you hit the 
@@ -32,13 +41,19 @@ public class Goomba {
   
   
   public void animate() {
-    if (framePause + 200 <= millis()) {
-      frame += 1;
-      frame %= 4;
-      framePause = millis();
+    if (!dead) {
+      if (framePause + 200 <= millis()) {
+        frame += 1;
+        frame %= 4;
+        framePause = millis();
+      }
+      gImgs[frame].resize(32, 32);
+      image(gImgs[frame], rect.x - cameraOffset, rect.y);
+    } else {
+      gImgs[4].resize(32, 32);
+      image(gImgs[4], rect.x - cameraOffset, rect.y);
+      rect.ySize = 16;
     }
-    gImgs[frame].resize(32, 32);
-    image(gImgs[frame], rect.x - cameraOffset, rect.y);
   }
   
   public boolean blockTopCollision() { // have you collided with the top of the block?
@@ -66,9 +81,12 @@ public class Goomba {
   
   public void update() {
     gravity();
+    squash();
     blockLeftCollision();
     blockRightCollision();
-    rect.left -= velX;
+    if (!dead) {
+      rect.left -= velX;
+    }
     rect.top += velY;
     rect.update();
   }

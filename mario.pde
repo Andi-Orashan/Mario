@@ -17,10 +17,10 @@ public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
 Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
-public PImage[] gImgs = new PImage[4];
+public PImage[] gImgs = new PImage[5];
 public PImage[] powIMG = new PImage[4];
 public boolean start = false; //Whether or not to show start image
-PFont font;// text font
+PFont font; // text font
 
 
 void setup() {
@@ -72,6 +72,7 @@ void loadImages() { //self explanatory.
   gImgs[1] = loadImage("goomba-anime2.png");
   gImgs[2] = loadImage("goomba-anime3.png");
   gImgs[3] = loadImage("goomba-anime4.png");
+  gImgs[4] = loadImage("goomba-SS.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
   goombaIMG = loadImage("goomba.png");
