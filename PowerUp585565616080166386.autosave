@@ -2,8 +2,7 @@ public class PowerUp {
   PRect rect;
   char pType;
   PImage img;
-  PowerUp(float x, float y, int type) {
-    rect = new PRect(x, y, TILESIZE, TILESIZE);
+  PowerUp (float x, float y, int type) {
     switch (type) { 
       case 0: // ground
         pType = 'C';
@@ -16,6 +15,6 @@ public class PowerUp {
       }
   }
   public void disp() {
-    image(img, rect.left - cameraOffset, rect.top);
+    image(img, rect.x - cameraOffset, rect.y);
   }
 }
