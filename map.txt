@@ -6,10 +6,10 @@
        M                                                                 g                                                                                                                                
                        BEBB                                       BEEBBBBBEEEBEBBE                                                                                                                        
                                                                                                                                                                                                           
-       g                                                  D                                                        BB                                                                                     
-     MBMBM                                               BBB                                                      BBB                                                                                     
+       g                                                  D                                                        BB                                                                                   GG
+     MBMBM                                               BBB                                                      BBB                                                                                   GG
                                                         DDDDD                            EEEBB                   BBBB                   g                 E     E                                       GG
-                                 D                    gBBBBBBB                                                  BBBBB                  ME                EE     EE                                 GG   GG
+                                 D                    gBBBBBBB                                                  BBBBB                  ME                EE     EE                                 GGgggGG
                                 BB                    DDDDDDDDD                   g                            BBBBBB                                   EEE   g EEE                  F             GGgggGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
