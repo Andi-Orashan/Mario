@@ -110,7 +110,7 @@ public class Player {
         vel.y = 1;
         //rect.top = block.rect.bottom;
         if (block.full == true) {
-          
+          powerList.add(new PowerUp(block.rect.centerx+TILESIZE, block.rect.centery+TILESIZE, int(random(0,1))));
         }
         return true;
       }
