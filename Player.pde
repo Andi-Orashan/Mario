@@ -8,7 +8,7 @@ public class Player {
   public boolean big = false;
   
   public Player() {
-    rect = new PRect(50, width/2, 16, 26);
+    rect = new PRect(50, width/2, 24, 39);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
     grav = 17.4/60; jumpPress = millis(); fric = 0.2;
   }
@@ -16,17 +16,17 @@ public class Player {
   public void disp() {
     // rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize);
     if (vel.x > 0.1 && (!jump && !fall)) {
-      pImgs[0][frame].resize(24, 32);
+      pImgs[0][frame].resize(36, 48);
       dir = 0;
-      image(pImgs[0][frame], rect.left - 4 - cameraOffset, rect.top);
+      image(pImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
       if (framePause + 50 <= millis()) {
         frame += 1;
         frame %= 4;
         framePause = millis();
       }
     } else if (vel.x < -0.1 && (!jump && !fall)) {
-      pImgs[1][frame].resize(24, 32);
-      image(pImgs[1][frame], rect.left - 4 - cameraOffset, rect.top);
+      pImgs[1][frame].resize(36, 48);
+      image(pImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
       dir = 1;
       if (framePause + 50 <= millis()) {
         frame += 1;
@@ -35,16 +35,20 @@ public class Player {
       }
     } else if (!jump && !fall) {
       if (dir == 0) {
-        image(pImgs[0][1], rect.left - 4 - cameraOffset, rect.top);
+        pImgs[0][1].resize(36, 48);
+        image(pImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
       } else if (dir == 1) {
-        image(pImgs[1][1], rect.left - 4 - cameraOffset, rect.top);
+        pImgs[0][1].resize(36, 48);
+        image(pImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
       }
     }
     if (jump || fall) {
       if (vel.x >= 0) {
-        image(pImgs[2][1], rect.left - 4 - cameraOffset, rect.top);
+        pImgs[2][1].resize(36, 48);
+        image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
       } else {
-        image(pImgs[2][0], rect.left - 4 - cameraOffset, rect.top);
+        pImgs[2][0].resize(36, 48);
+        image(pImgs[2][0], rect.left - 6 - cameraOffset, rect.top);
       }
     }
   }
