@@ -12,12 +12,10 @@ public class Flag {
   
   public void disp() {
     
-    image(flagpoleIMG, rect.x, rect.y-360);
-    image(flagIMG, rect.x-16, (rect.y-345)+flagHeight);
+    image(flagpoleIMG, rect.x - cameraOffset, rect.y-360);
+    image(flagIMG, rect.x-16 - cameraOffset, (rect.y-345)+flagHeight);
     if (player.rect.x >= rect.x) {
       won = true;
-      print(won);
-      print(flagHeight);
     }
     if (won == true && flagHeight <= 300) {
       flagHeight += 3;

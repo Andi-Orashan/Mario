@@ -26,6 +26,6 @@ public class Block {
   }
   
   public void disp() {
-    image(img, rect.x, rect.y);
+    image(img, rect.x - cameraOffset, rect.y);
   }
 }
