@@ -8,7 +8,7 @@
                                                                                                                                                                                                           
        g                                                  D                                                        BB                                                                                   GG
      MBMBM                                               BBB                                                      BBB                                                                                   GG
-                                                        DDDDD                            EEEBB                   BBBB                   g                 E     E                                       GG
+                                                        DDDDD                            EEEBB                   BBBB                   g                 E     E                                   G   GG
                                  D                    gBBBBBBB                                                  BBBBB                  ME                EE     EE                                 GGgggGG
                                 BB                    DDDDDDDDD                   g                            BBBBBB                                   EEE   g EEE                  F             GGgggGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
