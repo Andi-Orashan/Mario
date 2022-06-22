@@ -16,6 +16,7 @@ public PImage flagIMG; //flag image
 public PImage goombaIMG; //goomba picture
 public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
+public PImage castle;
 public PImage coinIMG;
 Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
@@ -95,6 +96,7 @@ void loadImages() { //self explanatory.
   goombaIMG = loadImage("goomba.png");
   koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");
+  castle = loadImage("castle.png");
 }
 
 void loadMap() {//moves the map file to a place where we could code it. 

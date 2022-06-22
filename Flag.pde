@@ -10,14 +10,10 @@ public class Flag {
     img = flagpoleIMG;
   }
   
-  public void disp() {
-<<<<<<< Updated upstream
-    // draws flag and flagpole. 
-=======
-    //draws flag and flagpole. 
->>>>>>> Stashed changes
+  public void disp() { 
     image(flagpoleIMG, rect.x - cameraOffset, rect.y-360);
     image(flagIMG, rect.x-16 - cameraOffset, (rect.y-345)+flagHeight);
+    image(castle, rect.x + 100 -cameraOffset, rect.y - 500);
     if (player.rect.x >= rect.x) { //drops the flag if you get to it. 
       won = true;
     }
