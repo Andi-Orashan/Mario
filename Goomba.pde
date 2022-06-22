@@ -1,13 +1,35 @@
 public class Goomba {
   PRect rect;
-  public float velY, accY, grav;
+  public float velX, velY, accY, grav;
   public int frame, framePause;
   
   public Goomba(float x, float y) {
     rect = new PRect(x, y, 32, 30);
     grav = 17.4/60;
+    velX = -2;
     frame = 0; framePause = millis();
   }
+  
+  public boolean blockRightCollision() {// have you hit the 
+    for (Block block : blockList) {
+      if (rect.bottom > block.rect.top + 1 && rect.right + velX > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
+        velX = 2;
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean blockLeftCollision() {
+    for (Block block : blockList) {
+      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + velX < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1) {
+        velX = -2;
+        return true;
+      }
+    }
+    return false;
+  }
+  
   
   public void animate() {
     if (framePause + 200 <= millis()) {
@@ -44,7 +66,9 @@ public class Goomba {
   
   public void update() {
     gravity();
-    rect.left -= 2;
+    blockLeftCollision();
+    blockRightCollision();
+    rect.left -= velX;
     rect.top += velY;
     rect.update();
   }
