@@ -44,11 +44,16 @@ public class Koopa {
     if (!dead) {
       if (framePause + 200 <= millis()) {
         frame += 1;
-        frame %= 4;
+        frame %= 5;
         framePause = millis();
       }
-      gImgs[frame].resize(32, 32);
-      image(gImgs[frame], rect.x - cameraOffset, rect.y);
+      if (velX >= 0) {
+        kImgs[1][frame].resize(32, 32);
+        image(kImgs[1][frame], rect.x - cameraOffset, rect.y);
+      } else {
+        kImgs[0][frame].resize(32, 32);
+        image(kImgs[0][frame], rect.x - cameraOffset, rect.y);
+      }
     } else {
       gImgs[4].resize(32, 32);
       image(gImgs[4], rect.x - cameraOffset, rect.y);
