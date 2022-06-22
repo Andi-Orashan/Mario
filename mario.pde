@@ -17,7 +17,7 @@ public PImage[][] pImgs = new PImage[3][4];
 public boolean start = false;
 PFont font;
 
-public Flag flagpole = new Flag(80, 80, 'f');
+public Flag flagpole = new Flag(80, 80);
 
 void setup() {
   font = loadFont("LucidaSans-Typewriter-25.vlw");
@@ -32,7 +32,7 @@ void setup() {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
       }
       if (map.get(y).charAt(x) == 'F') {
-        flagpole = (new Flag(x*40, y*40, map.get(y).charAt(x)));
+        flagpole = (new Flag(x*40, y*40));
         flagpole.img.resize(40, 400);
         flagIMG.resize(40,40);
       }
