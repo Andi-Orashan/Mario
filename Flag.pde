@@ -5,7 +5,7 @@ public class Flag {
   int flagHeight = 0;
   public boolean won = false;
   
-  public Flag(int x, int y, char type) {
+  public Flag(int x, int y) {
     rect = new PRect(x, y, 40, 400);
     img = flagpoleIMG;
   }
