@@ -27,7 +27,7 @@ void setup() {
   loadImages();
   loadMap();
   for (int y = 0; y < 15; y++) {
-    for (int x = 0; x < 40; x++) {
+    for (int x = 0; x < 60; x++) {
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F') {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
       }
