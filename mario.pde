@@ -3,7 +3,6 @@ public PImage[] blockImgs = new PImage[5]; // all of the blocks you can walk on 
 public ArrayList<String> map = new ArrayList<String>(); // matrix pulled from map.txt file. Shows where all the blocks are. 
 public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the tiles in the game. This is to make offset work. also to make storage easier.
 public ArrayList<Goomba> goombaList = new ArrayList<Goomba>();
-public ArrayList<PowerUp> powerList = new ArrayList<PowerUp>();
 String line; // buffer variable to read text file. 
 public int TILESIZE = 40; //for scaling purposes
 BufferedReader reader; //class that reads map.txt
