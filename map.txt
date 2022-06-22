@@ -1,15 +1,15 @@
-                M                                                                                                                                                                                       GG
-                                                                                                                                                                                                        GG
-                                                                                                                                                                                                        GG
-               BBB                                                       MMM                                                                                                                            GG
-                                                                                                                                                                                                        GG
-       M                                                                 g                                                                                                                              GG
-                       BEBB                                       BEEBBBBBEEEBEBBE                                                                                                                      GG
-                                                                                                                                                                                                        GG
-       g                                                  D                                                        BB                                                                                   GG
-     MBMBM                                               BBB                                                      BBB                                                                                   GG
-                                                        DDDDD                            EEEBB                   BBBB                   g                 E     E                                       GG
-                                 D                    gBBBBBBB                                                  BBBBB                  ME                EE     EE                                      GG
-                                BB                    DDDDDDDDD                   g                            BBBBBB                                   EEE   g EEE                             g F     GG
+                M                                                                                                                                                                                         
+                                                                                                                                                                                                          
+                                                                                                                                                                                                          
+               BBB                                                       MMM                                                                                                                              
+                                                                                                                                                                                                          
+       M                                                                 g                                                                                                                B B B      B B B
+                       BEBB                                       BEEBBBBBEEEBEBBE                                                                                                        BBBBB      BBBBB
+                                                                                                                                                                                          BBBBB      BBBBB
+       g                                                  D                                                        BB                                                                     GGGGGGGGGGGGGGGG
+     MBMBM                                               BBB                                                      BBB                                                                     GGGGGGGGGGGGGGGG
+                                                        DDDDD                            EEEBB                   BBBB                   g                 E     E                         GGGGGGG  GGGGGGG
+                                 D                    gBBBBBBB                                                  BBBBB                  ME                EE     EE                        GGGGGG    GGGGGG
+                                BB                    DDDDDDDDD                   g                            BBBBBB                                   EEE   g EEE                  F    GGGGGG    GGGGGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
