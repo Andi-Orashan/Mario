@@ -17,11 +17,7 @@ public class Player {
     // rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
     //determines which sprites to use. 
     if (vel.x > 0.1 && (!jump && !fall)) {
-<<<<<<< Updated upstream
-      pImgs[0][frame].resize(36, 48);
-=======
-      pImgs[0][frame].resize(24, 32); //facing right walk
->>>>>>> Stashed changes
+      pImgs[0][frame].resize(36, 48); //facing right walk
       dir = 0;
       image(pImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
       if (framePause + 50 <= millis()) {
@@ -29,15 +25,9 @@ public class Player {
         frame %= 4;
         framePause = millis();
       }
-<<<<<<< Updated upstream
-    } else if (vel.x < -0.1 && (!jump && !fall)) {
+    } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
       pImgs[1][frame].resize(36, 48);
       image(pImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
-=======
-    } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
-      pImgs[1][frame].resize(24, 32);
-      image(pImgs[1][frame], rect.left - 4 - cameraOffset, rect.top);
->>>>>>> Stashed changes
       dir = 1;
       if (framePause + 50 <= millis()) {
         frame += 1;
@@ -55,17 +45,11 @@ public class Player {
     }
     if (jump || fall) { //Are you jumping or falling to the right
       if (vel.x >= 0) {
-<<<<<<< Updated upstream
         pImgs[2][1].resize(36, 48);
         image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
       } else {
         pImgs[2][0].resize(36, 48);
         image(pImgs[2][0], rect.left - 6 - cameraOffset, rect.top);
-=======
-        image(pImgs[2][1], rect.left - 4 - cameraOffset, rect.top);
-      } else { // are you jump falling to the left. 
-        image(pImgs[2][0], rect.left - 4 - cameraOffset, rect.top);
->>>>>>> Stashed changes
       }
     }
   }

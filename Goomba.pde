@@ -6,6 +6,12 @@ public class Goomba {
   }
   
   public void disp() {
-    
+    goombaIMG.resize(32, 32);
+    image(goombaIMG, rect.x - cameraOffset, rect.y);
+  }
+  
+  public void update() {
+    rect.left -= 2;
+    rect.update();
   }
 }

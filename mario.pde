@@ -1,27 +1,8 @@
-<<<<<<< Updated upstream
-public int cameraOffset = 0;
-public PImage[] blockImgs = new PImage[5];
-public ArrayList<String> map = new ArrayList<String>();
-public ArrayList<Block> blockList = new ArrayList<Block>();
-String line;
-public int TILESIZE = 40;
-BufferedReader reader;
-Player player = new Player();
-public PImage open;
-public PImage bg;
-public PImage flagpoleIMG;
-public PImage flagIMG;
-public PImage goombaIMG;
-public PImage koopaIMG;
-public PImage shell;
-public PImage[][] pImgs = new PImage[3][4];
-public boolean start = false;
-PFont font;
-=======
 public int cameraOffset = 0; // moves every block to the left to make scrolling.
 public PImage[] blockImgs = new PImage[5]; // all of the blocks you can walk on or collide with have images in this list. 
 public ArrayList<String> map = new ArrayList<String>(); // matrix pulled from map.txt file. Shows where all the blocks are. 
-public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the tiles in the game. This is to make offset work. also to make storage easier. 
+public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the tiles in the game. This is to make offset work. also to make storage easier.
+public ArrayList<Goomba> goombaList = new ArrayList<Goomba>();
 String line; // buffer variable to read text file. 
 public int TILESIZE = 40; //for scaling purposes
 BufferedReader reader; //class that reads map.txt
@@ -30,13 +11,12 @@ public PImage open; //The title screen picture
 public PImage bg; //background image
 public PImage flagpoleIMG; //flagpole picture
 public PImage flagIMG; //flag image
-public PImage goomba; //goomba picture
-public PImage koopa; //koopa picture
+public PImage goombaIMG; //goomba picture
+public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
 public boolean start = false; //Whether or not to show start image
 PFont font;// text font
->>>>>>> Stashed changes
 
 public Flag flagpole = new Flag(80, 80); // creates a flagpole (buffer item off screen).
 
@@ -49,14 +29,10 @@ void setup() {
   reader = createReader("map.txt");
   loadImages();
   loadMap();
-<<<<<<< Updated upstream
+
   for (int y = 0; y < 15; y++) {
-    for (int x = 0; x < 60; x++) {
-=======
-  for (int y = 0; y < 15; y++) { //actually places the tiles.
-    for (int x = 0; x < 40; x++) {
->>>>>>> Stashed changes
-      if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F') {
+    for (int x = 0; x < 60; x++) { // places tiles
+      if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g') {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
       }
       if (map.get(y).charAt(x) == 'F') {
@@ -64,11 +40,14 @@ void setup() {
         flagpole.img.resize(40, 400);
         flagIMG.resize(40,40);
       }
+      if (map.get(y).charAt(x) == 'g') {
+        goombaList.add(new Goomba(x*40, 6*40));
+      }
     }
   }
 }
 
-void loadImages() { //self explanitory. 
+void loadImages() { //self explanatory. 
   open = loadImage("image.png");
   bg = loadImage("background.png");
   blockImgs[0] = loadImage("crackedTile.png");
@@ -166,9 +145,15 @@ void draw() {
     image(bg, 0 - cameraOffset / 3, 0);
     fill(255);
     player.update();
+    for (Goomba goomba : goombaList) {
+      goomba.update();
+    }
     for (Block block : blockList) {
       block.img.resize(TILESIZE, TILESIZE);
       block.disp();
+    }
+    for (Goomba goomba : goombaList) {
+      goomba.disp();
     }
     flagpole.disp();
     player.disp();
