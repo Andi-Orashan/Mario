@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
                 M                                                                                                                                                                                         
                                                                                                                                                                                                           
                                                                                                                                                                                                           
@@ -9,6 +10,19 @@
        g                                                  D                                                        BB                                                                                   GG
      MBMBM                                               BBB                                                      BBB                                                                                   GG
                                                         DDDDD                            EEEBB                   BBBB                   g                 E     E                                   G   GG
+=======
+                M                                                                                                                                                                                    ggg  
+                                                                                                                                                                                                     ggg  
+                                                                                                                                                                                                     ggg  
+               BBB                                                       MMM                                                                                                                         ggg  
+                                                                                                                                                                                                     ggg  
+       M                                                                 g                                                                                                                           ggg  
+                       BEBB                                       BEEBBBBBEEEBEBBE                                                                                                                   ggg  
+                                                                                                                                                                                                     ggg  
+       g                                                  D                                                        BB                                                                                gggGG
+     MBMBM                                               BBB                                                      BBB                                                                                gggGG
+                                                        DDDDD                            EEEBB                   BBBB                   g                 E     E                                    gggGG
+>>>>>>> Stashed changes
                                  D                    gBBBBBBB                                                  BBBBB                  ME                EE     EE                                 GGgggGG
                                 BB                    DDDDDDDDD                   g                            BBBBBB                                   EEE   g EEE                  F             GGgggGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG

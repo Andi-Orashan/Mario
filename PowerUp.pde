@@ -15,6 +15,6 @@ public class PowerUp {
       }
   }
   public void disp() {
-    
+    image(img, rect.x - cameraOffset, rect.y);
   }
 }
