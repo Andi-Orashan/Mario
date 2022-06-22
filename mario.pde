@@ -75,6 +75,11 @@ void loadImages() { //self explanatory.
   gImgs[2] = loadImage("goomba-anime3.png");
   gImgs[3] = loadImage("goomba-anime4.png");
   gImgs[4] = loadImage("goomba-SS.png");
+  kImgs[0][0] = loadImage("koopa anime1.png");
+  kImgs[0][1] = loadImage("koopa anime2.png");
+  kImgs[0][2] = loadImage("koopa anime3.png");
+  kImgs[0][3] = loadImage("koopa anime4.png");
+  kImgs[0][4] = loadImage("koopa anime5.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
   coinIMG = loadImage("coin.png");
