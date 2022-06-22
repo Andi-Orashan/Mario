@@ -60,8 +60,8 @@ void loadImages() {
   pImgs[2][1] = loadImage("Ljump.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
-  goomba = loadImage("Final Gomba.png");
-  koopa = loadImage("koopa.png");
+  goombaIMG = loadImage("Final Gomba.png");
+  koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");
 }
 
@@ -126,8 +126,9 @@ void draw() {
     textSize(18);
     text("Enemies",width/3.5, 190);
     image(goombaIMG, 200,210);
-    image(koopaIMG, 250,230);
-    image(shell,200, 250);
+    image(koopaIMG, 230,230);
+    image(shell, 200,250);
+    text("PowerUps", 330,190);
     if (keyCode == ENTER) {
       start = true;
     }
