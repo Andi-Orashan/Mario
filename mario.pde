@@ -60,8 +60,8 @@ void loadImages() {
   pImgs[2][1] = loadImage("Ljump.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
-  goomba = loadImage("Final Gomba.png");
-  koopa = loadImage("koopa.png");
+  goombaIMG = loadImage("Final Gomba.png");
+  koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");
 }
 
