@@ -30,5 +30,8 @@ public class Block {
   //displays the picture. 
   public void disp() {
     image(img, rect.x - cameraOffset, rect.y);
+    if (full == false && type == 'M') {
+      img = blockImgs[3];
+    }
   }
 }

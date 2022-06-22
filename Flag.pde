@@ -11,7 +11,11 @@ public class Flag {
   }
   
   public void disp() {
+<<<<<<< Updated upstream
     // draws flag and flagpole. 
+=======
+    //draws flag and flagpole. 
+>>>>>>> Stashed changes
     image(flagpoleIMG, rect.x - cameraOffset, rect.y-360);
     image(flagIMG, rect.x-16 - cameraOffset, (rect.y-345)+flagHeight);
     if (player.rect.x >= rect.x) { //drops the flag if you get to it. 

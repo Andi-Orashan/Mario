@@ -16,6 +16,6 @@ public class PowerUp {
       }
   }
   public void disp() {
-    image(img, rect.left - cameraOffset, rect.top);
+    image(img, rect.left-TILESIZE/2 - cameraOffset, rect.top-TILESIZE/2);
   }
 }
