@@ -22,7 +22,7 @@ Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
 public PImage[] gImgs = new PImage[5];
 public PImage[][] kImgs = new PImage[2][5];
-public PImage[] powIMG = new PImage[4];
+public PImage[] powIMG = new PImage[2];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
 
@@ -97,6 +97,11 @@ void loadImages() { //self explanatory.
   koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");
   castle = loadImage("castle.png");
+  powIMG[0] = loadImage("MShroom.png");
+  powIMG[1] = loadImage("metalMushroom.png");
+  for (PImage item : powIMG) {
+      item.resize(40,40);
+    }
 }
 
 void loadMap() {//moves the map file to a place where we could code it. 
