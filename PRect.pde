@@ -1,4 +1,4 @@
-public class PRect {  //does collision! does movement. Only andrew understands it. 
+public class PRect {  // does movement. Only andrew understands it. 
   public float x, y, left, right, bottom, top, centerx, centery, xSize, ySize;
   public float[] topleft = new float[2]; public float[] bottomright = new float[2]; public float[] center = new float[2];
   
