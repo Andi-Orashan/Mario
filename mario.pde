@@ -33,6 +33,7 @@ void setup() {
   for (int y = 0; y < 15; y++) {
     for (int x = 0; x < 202; x++) { // places tiles
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g') {
+        mysteryList.add(new Mystery(x*40, y*40, map.get(y).charAt(x)));
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
       }
       if (map.get(y).charAt(x) == 'F') {

@@ -2,6 +2,7 @@ public class Block {
   PRect rect;
   char type;
   PImage img;
+  boolean full;
   // which block is this? and lets grab its sprites. Hitboxes are somewhereelse. 
   public Block(int x, int y, char type) {
     rect = new PRect(x, y, TILESIZE, TILESIZE);
@@ -15,9 +16,11 @@ public class Block {
         break;
       case 'M': // yellow block
         img = blockImgs[4];
+        full = true;
         break;
       case 'E': // empty block
         img = blockImgs[3];
+        full = false;
         break;
       case 'D': // other block 
         img = blockImgs[1];

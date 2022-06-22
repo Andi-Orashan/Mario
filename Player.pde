@@ -109,6 +109,9 @@ public class Player {
       if (rect.bottom > block.rect.centery && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top + vel.y < block.rect.bottom) {
         vel.y = 1;
         //rect.top = block.rect.bottom;
+        if (block.full == true) {
+          
+        }
         return true;
       }
     }
