@@ -10,8 +10,8 @@ public PImage open;
 public PImage bg;
 public PImage flagpoleIMG;
 public PImage flagIMG;
-public PImage goomba;
-public PImage koopa;
+public PImage goombaIMG;
+public PImage koopaIMG;
 public PImage shell;
 public PImage[][] pImgs = new PImage[3][4];
 public boolean start = false;
@@ -125,8 +125,8 @@ void draw() {
     fill(0);
     textSize(18);
     text("Enemies",width/3.5, 190);
-    image(goomba, 200,210);
-    image(koopa, 250,230);
+    image(goombaIMG, 200,210);
+    image(koopaIMG, 250,230);
     image(shell,200, 250);
     if (keyCode == ENTER) {
       start = true;
