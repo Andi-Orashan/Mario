@@ -15,7 +15,6 @@ public PImage flagIMG; //flag image
 public PImage goombaIMG; //goomba picture
 public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
-public PImage coinIMG;
 Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
 public PImage[] gImgs = new PImage[5];
@@ -76,7 +75,6 @@ void loadImages() { //self explanatory.
   gImgs[4] = loadImage("goomba-SS.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
-  coinIMG = loadImage("coin.png");
   goombaIMG = loadImage("goomba.png");
   koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");

@@ -3,7 +3,7 @@ public class Block {
   char type;
   PImage img;
   boolean full;
-  // which block is this? and lets grab its sprites. Hitboxes are somewhereelse.   
+  // which block is this? and lets grab its sprites. Hitboxes are somewhereelse. 
   public Block(int x, int y, char type) {
     rect = new PRect(x, y, TILESIZE, TILESIZE);
     this.type = type;
