@@ -7,11 +7,11 @@ public class PowerUp {
     switch (type) { 
       case 0: // ground
         pType = 'C';
-        img = blockImgs[type];
+        img = powIMG[type];
         break;
       case 1: // bricks
         pType = 'C';
-        img = blockImgs[type];
+        img = powIMG[type];
         break;
       }
   }
