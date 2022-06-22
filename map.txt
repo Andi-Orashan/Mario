@@ -1,15 +1,15 @@
                 M                                                                                                                                                                                     
                                                                                                                                                                                                        
                                                                                                                                                                                                     
-               BBB                                                                                                                                                                                  
+               BBB                                                       MMM                                                                                                                        
                                                                                                                                                                                                     
        M                                                                                                                                                                                            
                        BEBB                                       BEEBBBBBEEEBEBBE                                                                                                                  
                                                                                                                                                                                                     
-                                                          D                                                              BB                                                                         
-     MBMBM                                               BBB                                                            BBB                                                                         
-                                                        DDDDD                            EEEBB                         BBBB                                                                         
-                                 D                     BBBBBBB                                                        BBBBB                                                                          
-                                BB                    DDDDDDDDD                                                      BBBBBB                                                                     g F 
+                                                          D                                                        BB                                                                               
+     MBMBM                                               BBB                                                      BBB                                                                               
+                                                        DDDDD                            EEEBB                   BBBB                                                                               
+                                 D                     BBBBBBB                                                  BBBBB                                                                                
+                                BB                    DDDDDDDDD                                                BBBBBB                                                                           g F 
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
