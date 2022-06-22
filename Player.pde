@@ -146,8 +146,8 @@ public class Player {
       jump();
     }
     
-    if (rect.right - cameraOffset >= width - TILESIZE * 1.5) { //If you are near the edge, scroll cam. 
-      cameraOffset += (rect.right - cameraOffset) - (width - TILESIZE * 1.5);
+    if (rect.right - cameraOffset >= width * .75) { //If you are near the edge, scroll cam. 
+      cameraOffset += (rect.right - cameraOffset) - (width * .75);
     }
     //wraps everything into one function. 
     move();

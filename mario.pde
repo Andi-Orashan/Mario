@@ -17,8 +17,8 @@ public PImage shell; //shell picture
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
 public boolean start = false; //Whether or not to show start image
 PFont font;// text font
-
-public Flag flagpole = new Flag(80, 80); // creates a flagpole (buffer item off screen).
+Flag flagpole; 
+ 
 
 void setup() {
   //creates the text
@@ -31,7 +31,7 @@ void setup() {
   loadMap();
 
   for (int y = 0; y < 15; y++) {
-    for (int x = 0; x < 60; x++) { // places tiles
+    for (int x = 0; x < 196; x++) { // places tiles
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g') {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
       }
