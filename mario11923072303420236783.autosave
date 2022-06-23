@@ -6,7 +6,6 @@ public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the
 public ArrayList<Goomba> goombaList = new ArrayList<Goomba>();
 public ArrayList<Koopa> koopaList = new ArrayList<Koopa>();
 public ArrayList<PowerUp> powerList = new ArrayList<PowerUp>();
-public int tempCoins;
 String line; // buffer variable to read text file. 
 public int TILESIZE = 40; //for scaling purposes
 BufferedReader reader; //class that reads map.txt
@@ -22,8 +21,6 @@ public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
 public PImage castle;
 public PImage coinIMG;
-public PImage pUI;
-public PImage coinUI;
 Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
 public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
@@ -31,7 +28,6 @@ public PImage[][] mImgs = new PImage[3][4]; // metal sprites
 public PImage[] gImgs = new PImage[5];
 public PImage[][] kImgs = new PImage[2][5];
 public PImage[] powIMG = new PImage[3];
-public PImage[] frontPowIMG = new PImage[3];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
 public int score = 0;
@@ -125,8 +121,6 @@ void loadImages() { //self explanatory.
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
   coinIMG = loadImage("coin.png");
-  pUI = loadImage("shortBob-anime1.png");
-  coinUI = loadImage("coin.png");
   goombaIMG = loadImage("goomba.png");
   koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");
@@ -134,9 +128,6 @@ void loadImages() { //self explanatory.
   powIMG[0] = loadImage("MShroom.png");
   powIMG[1] = loadImage("metalMushroom.png");
   powIMG[2] = loadImage("1UP.png");
-  frontPowIMG[0] = loadImage("MShroom.png");
-  frontPowIMG[1] = loadImage("metalMushroom.png");
-  frontPowIMG[2] = loadImage("1UP.png");
   win = loadImage("winScreen.png");
   lose = loadImage("gameOverSprite.png");
   coinIMG = loadImage("coin.png");
@@ -149,7 +140,6 @@ void resetLists() {
   goombaList.clear();
   koopaList.clear();
   blockList.clear();
-  powerList.clear();
 }
 
 void loadMap() {//moves the map file to a place where we could code it. 
@@ -188,9 +178,7 @@ public void reset() {
   createMap();
   tempLives = player.lives;
   player = new Player();
-  player.lives = 3;
-  score = 0;
-  player.coin = 0;
+  player.lives = tempLives;
   cameraOffset = 0;
 }
 
@@ -199,10 +187,8 @@ public void pReset() {
   resetLists();
   createMap();
   tempLives = player.lives;
-  tempCoins = player.coin;
   player = new Player();
   player.lives = tempLives;
-  player.coin = tempCoins;
   player.reset = true;
   cameraOffset = 0;
 }
@@ -221,13 +207,9 @@ void keyReleased() {
 
 public void UI() {
   fill(0);
-  text(score, 190, 15);
-  pUI.resize(20, 20);
-  image(pUI, 222, 7);
-  text(player.lives, 250, 15);
-  coinUI.resize(20, 20);
-  image(coinUI, 272, 5);
-  text(player.coin, 300, 15);
+  text(score, 200, 10);
+  text(player.lives, 250, 10);
+  text(player.coin, 300, 10);
   fill(255);
 }
 
@@ -252,25 +234,24 @@ void draw() {
     rect(175,175,450,110);
     fill(0);
     textSize(18);
-    text("Enemies",width/3.5 - 5, 190);
+    text("Enemies",width/3.5, 190);
     image(goombaIMG, 200,210);
     image(koopaIMG, 230,230);
     shell.resize(20, 20);
     image(shell, 200,250);
     text("Bob with PowerUps",380,190);
     line(270,175,270,285);
-    frontPowIMG[1].resize(20,20);
-    image(frontPowIMG[1], 289,210);
-    mImgs[0][2].resize(20,40);
-    image(mImgs[0][2],320, 205);
+    powIMG[1].resize(20,20);
+    image(powIMG[1], 289,210);
+    image(mImgs[0][2],330, 210);
     textSize(16);
-    text("Metal Mushroom and Metal Bob",489,220);
-    frontPowIMG[0].resize(20,20);
-    image(frontPowIMG[0], 289, 250);
-    tBImgs[0][0].resize(20,40);
-    image(tBImgs[0][0],320,245);
+    text("Metal Mushroom and Metal Bob",489,230);
+    powIMG[0].resize(20,20);
+    image( powIMG[0], 289, 250);
+    
+    image(tBImgs[0][0],330,250);
     textSize(16);
-    text("Mushroom and Tall Bob", 455, 260);
+    text("Mushroom and tall Bob", 460, 260);
     if (keyCode == ENTER || player.reset) {
       start = true;
       player.reset = false;
