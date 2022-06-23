@@ -57,7 +57,7 @@ public class Koopa {
   }
   
   public boolean playerLeftCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
+      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1) {
         if (player.metal == true) {
           dead = true;
         } else {
@@ -68,7 +68,7 @@ public class Koopa {
     return false;
   }
   public boolean playerRightCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
+      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1) {
         if (player.metal == true) {
           dead = true;
         } else {
