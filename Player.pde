@@ -112,14 +112,14 @@ public class Player {
         }
       }
       if (jump || fall) { //Are you jumping or falling to the right
-        rect.xSize = 52;
+        rect.xSize = 24;
         rect.ySize = 48;
         if (vel.x >= 0) {
           tBImgs[2][0].resize(72, 72);
-          image(tBImgs[2][0], rect.left - 10 - cameraOffset, rect.top - 16); 
+          image(tBImgs[2][0], rect.left - 24 - cameraOffset, rect.top - 16); 
         } else {
           tBImgs[2][1].resize(72, 72);
-          image(tBImgs[2][1], rect.left - 10 - cameraOffset, rect.top - 16);
+          image(tBImgs[2][1], rect.left - 24 - cameraOffset, rect.top - 16);
         }
       }
     }
