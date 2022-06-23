@@ -3,7 +3,7 @@ public class PowerUp {
   char pType;
   PImage img;
   boolean show = true;
-  
+  boolean hasSpawned1UP = false;
   PowerUp(float x, float y, int type) {
     rect = new PRect(x, y, TILESIZE, TILESIZE);
     switch (type) { 
@@ -15,9 +15,14 @@ public class PowerUp {
         pType = 'M'; //metal
         img = powIMG[type];
         break;
-      case 2: // bricks
+      case 2: 
+      if (hasSpawned1UP == false) {
         pType = 'U'; //1UP
         img = powIMG[type];
+      } else {
+        pType = 'C'; //COIN SSSSSSSS
+        img = coinIMG;
+      }
         break;
       case 3: // bricks
         pType = 'C'; //COIN SSSSSSSS
