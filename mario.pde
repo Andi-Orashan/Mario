@@ -20,6 +20,8 @@ public PImage castle;
 public PImage coinIMG;
 Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
+public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
+public PImage[][] mImgs = new PImage[3][4]; // metal sprites
 public PImage[] gImgs = new PImage[5];
 public PImage[][] kImgs = new PImage[2][5];
 public PImage[] powIMG = new PImage[2];
@@ -75,6 +77,26 @@ void loadImages() { //self explanatory.
   pImgs[1][3] = loadImage("shortBob-flipped-anime4.png");
   pImgs[2][0] = loadImage("Rjump.png");
   pImgs[2][1] = loadImage("Ljump.png");
+  tBImgs[0][0] = loadImage("tallBob-anime-1.png");
+  tBImgs[0][1] = loadImage("tallBob-anime-2.png");
+  tBImgs[0][2] = loadImage("tallBob-anime-3.png");
+  tBImgs[0][3] = loadImage("tallBob-anime-4.png");
+  tBImgs[1][0] = loadImage("tallBob-flip-anime-1.png");
+  tBImgs[1][1] = loadImage("tallBob-flip-anime-2.png");
+  tBImgs[1][2] = loadImage("tallBob-flip-anime-3.png");
+  tBImgs[1][3] = loadImage("tallBob-flip-anime-4.png");
+  tBImgs[2][0] = loadImage("tallBob-rJump.png");
+  tBImgs[2][1] = loadImage("tallBob-lJump.png");
+  mImgs[1][0] = loadImage("metal-flip-anime-1.png");
+  mImgs[1][1] = loadImage("metal-flip-anime-2.png");
+  mImgs[1][2] = loadImage("metal-flip-anime-3.png");
+  mImgs[1][3] = loadImage("metal-flip-anime-4.png");
+  mImgs[0][0] = loadImage("metal-anime-1.png");
+  mImgs[0][1] = loadImage("metal-anime-2.png");
+  mImgs[0][2] = loadImage("metal-anime-3.png");
+  mImgs[0][3] = loadImage("metal-anime-4.png");
+  mImgs[2][0] = loadImage("metal-rJump.png");
+  mImgs[2][1] = loadImage("metal-lJump.png");
   gImgs[0] = loadImage("goomba-anime1.png");
   gImgs[1] = loadImage("goomba-anime2.png");
   gImgs[2] = loadImage("goomba-anime3.png");

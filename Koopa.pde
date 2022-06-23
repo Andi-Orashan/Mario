@@ -8,12 +8,12 @@ public class Koopa {
     rect = new PRect(x, y, 32, 30);
     dead = false;
     grav = 17.4/60;
-    velX = -2;
+    velX = 2;
     frame = 0; framePause = millis();
   }
   
   public void squash() {
-    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left - 3 && player.rect.left < rect.right + 3 && !dead) {
+    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 6 && player.rect.right > rect.left - 3 && player.rect.left < rect.right + 3 && !dead) {
       dead = true;
       player.vel.y = min(-4, player.vel.y * 1.5);
       velX = 0;
@@ -76,22 +76,24 @@ public class Koopa {
   }
   
   public boolean playerLeftCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1) {
+      if (rect.bottom > player.rect.top + 30 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top + 25 < player.rect.bottom - 1) {
         if (player.metal == true) {
           dead = true;
         } else {
           player.dead = true;
+          player.inv = true;
         }
         
     }
     return false;
   }
   public boolean playerRightCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1) {
+      if (rect.bottom > player.rect.top + 30 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top + 25 < player.rect.bottom - 1) {
         if (player.metal == true) {
           dead = true;
         } else {
           player.dead = true;
+          player.inv = true;
         }
     }
     return false;

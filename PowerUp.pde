@@ -23,12 +23,15 @@ public class PowerUp {
     if (show == true) {
       image(img, rect.left-TILESIZE/2 - cameraOffset, rect.top-TILESIZE/2);
       //collision
-      if ((rect.bottom+TILESIZE/2 > player.rect.centery && rect.top-TILESIZE/2 < player.rect.centery) && (rect.centerx-TILESIZE/2 < player.rect.centerx && rect.centerx+TILESIZE/2 > player.rect.centerx)) {
+      if (player.rect.right > rect.left && player.rect.left < rect.right && player.rect.bottom > rect.top && player.rect.top < rect.bottom) {
         show = false;
         if (pType == 'M') {
           player.metal = true;
+          player.big = false;
         }
-        
+        if (pType == 'S' && !player.metal) {
+          player.big = true;
+        }
       }
     }
     

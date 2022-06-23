@@ -8,12 +8,12 @@ public class Goomba {
     rect = new PRect(x, y, 32, 30);
     dead = false;
     grav = 17.4/60;
-    velX = -2;
+    velX = 2;
     frame = 0; framePause = millis();
   }
   
   public void squash() {
-    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left && player.rect.left < rect.right && !dead) {
+    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 6 && player.rect.right > rect.left && player.rect.left < rect.right && !dead) {
       dead = true;
       player.vel.y = min(-4, player.vel.y * 1.5);
     }
@@ -39,22 +39,24 @@ public class Goomba {
     return false;
   }
   public boolean playerLeftCollision() {
-      if ((rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1 && dead == false)) {
+      if ((rect.bottom > player.rect.top + 30 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1 && dead == false)) {
         if (player.metal == true) {
           dead = true;
         } else {
           player.dead = true;
+          player.inv = true;
         }
         
     }
     return false;
   }
   public boolean playerRightCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
+      if (rect.bottom > player.rect.top + 30 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
         if (player.metal == true) {
           dead = true;
         } else {
           player.dead = true;
+          player.inv = true;
         }
     }
     return false;
