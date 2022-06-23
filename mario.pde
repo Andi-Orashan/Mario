@@ -239,6 +239,12 @@ void draw() {
     fill(38,142,31);
     text("Bob with PowerUps",380,190);
     line(270,175,270,285);
+    powIMG[1].resize(20,20);
+    image(powIMG[1], 289,210);
+    image(mImgs[0][2],330, 210);
+    powIMG[0].resize(20,20);
+    image( powIMG[0], 289, 250);
+    image(tBImgs[0][0],330,250);
     if (keyCode == ENTER || player.reset) {
       start = true;
       player.reset = false;
