@@ -50,7 +50,7 @@ public class PowerUp {
         show = false;
         if (pType == 'M') {
           player.metal = true;
-          player.big = false;
+          player.big = true;
           score += 50;
         }
         if (pType == 'S' && !player.metal) {

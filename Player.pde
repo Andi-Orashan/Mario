@@ -21,7 +21,7 @@ public class Player {
     //println(dead);
     //rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
     //determines which sprites to use.
-    if (timer + 5000 <= millis()) {
+    if (timer + 10000 <= millis()) {
       metal = false;
     }
     
