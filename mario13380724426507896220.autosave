@@ -137,9 +137,26 @@ void loadImages() { //self explanatory.
 }
 
 void resetLists() {
-  goombaList.clear();
-  koopaList.clear();
-  blockList.clear();
+  for (Goomba goomba : goombaList) {
+    goomba = null;
+  }
+  for (int i = 0; i < goombaList.size(); i++) {
+    goombaList.remove(goombaList.get(i));
+  }
+  
+  for (Koopa koopa : koopaList) {
+    koopa = null;
+  }
+  for (int i = 0; i < koopaList.size(); i++) {
+    koopaList.remove(koopaList.get(i));
+  }
+  
+  for (Block block : blockList) {
+    block = null;
+  }
+  for (int i = 0; i < blockList.size(); i++) {
+    blockList.remove(blockList.get(i));
+  }
 }
 
 void loadMap() {//moves the map file to a place where we could code it. 
@@ -172,24 +189,13 @@ void keyPressed() {
   }
 }
 
-public void reset() {
+void reset() {
   start = false;
   resetLists();
   createMap();
   tempLives = player.lives;
   player = new Player();
   player.lives = tempLives;
-  cameraOffset = 0;
-}
-
-public void pReset() {
-  start = false;
-  resetLists();
-  createMap();
-  tempLives = player.lives;
-  player = new Player();
-  player.lives = tempLives;
-  player.reset = true;
   cameraOffset = 0;
 }
 
@@ -225,36 +231,26 @@ void draw() {
     textSize(35);
     fill(255);
     text("Bob The Electrician", width/2,120);
-    fill(255);
-    rect(100,300,600,200);
     textSize(20);
-    fill(255);
     text("Use arrow keys to move",width/2,150);
     fill(111);
     rect(175,175,450,110);
-    fill(0);
+    fill(198,6,6);
     textSize(18);
     text("Enemies",width/3.5, 190);
     image(goombaIMG, 200,210);
     image(koopaIMG, 230,230);
     shell.resize(20, 20);
     image(shell, 200,250);
+    fill(38,142,31);
     text("Bob with PowerUps",380,190);
     line(270,175,270,285);
     powIMG[1].resize(20,20);
     image(powIMG[1], 289,210);
-    image(mImgs[0][2],330, 210);
-    textSize(16);
-    text("Metal Mushroom and Metal Bob",489,230);
-    powIMG[0].resize(20,20);
-    image( powIMG[0], 289, 250);
-    image(tBImgs[0][0],330,250);
-    textSize(16);
-    text("Mushroom and tall Bob", 460, 260);
-    if (keyCode == ENTER || player.reset) {
+    image(mImgs[1][3], 340,210);
+    if (keyCode == ENTER) {
       start = true;
       player.reset = false;
-      cameraOffset = 0; 
     }
   } else { //Draws the player, draws the map, drawsenemies. 
     background(0, 140, 255);

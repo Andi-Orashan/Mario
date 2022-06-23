@@ -10,6 +10,7 @@ public class Player {
   public boolean big = false; //end
   public boolean inv = false, reset = false;
   public int coin = 0;
+  int timer = 0;
   public Player() {
     rect = new PRect(50, width/2, 24, 24);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
@@ -20,7 +21,11 @@ public class Player {
     //println(dead);
     //rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
     //determines which sprites to use.
-    if (coin >= 10) {
+    if (timer + 10000 <= millis()) {
+      metal = false;
+    }
+    
+    if (coin >= 10) { //10 coins is one life
       coin -=10;
       lives++;
     }
