@@ -29,6 +29,7 @@ public PImage[][] mImgs = new PImage[3][4]; // metal sprites
 public PImage[] gImgs = new PImage[5];
 public PImage[][] kImgs = new PImage[2][5];
 public PImage[] powIMG = new PImage[3];
+public PImage[] frontPowIMG = new PImage[3];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
 public int score = 0;
@@ -129,6 +130,9 @@ void loadImages() { //self explanatory.
   powIMG[0] = loadImage("MShroom.png");
   powIMG[1] = loadImage("metalMushroom.png");
   powIMG[2] = loadImage("1UP.png");
+  frontPowIMG[0] = loadImage("MShroom.png");
+  frontPowIMG[1] = loadImage("metalMushroom.png");
+  frontPowIMG[2] = loadImage("1UP.png");
   win = loadImage("winScreen.png");
   lose = loadImage("gameOverSprite.png");
   coinIMG = loadImage("coin.png");
@@ -141,6 +145,7 @@ void resetLists() {
   goombaList.clear();
   koopaList.clear();
   blockList.clear();
+  powerList.clear();
 }
 
 void loadMap() {//moves the map file to a place where we could code it. 
@@ -246,13 +251,13 @@ void draw() {
     image(shell, 200,250);
     text("Bob with PowerUps",380,190);
     line(270,175,270,285);
-    powIMG[1].resize(20,20);
-    image(powIMG[1], 289,210);
+    frontPowIMG[1].resize(20,20);
+    image(frontPowIMG[1], 289,210);
     image(mImgs[0][2],330, 210);
     textSize(16);
     text("Metal Mushroom and Metal Bob",489,230);
-    powIMG[0].resize(20,20);
-    image( powIMG[0], 289, 250);
+    frontPowIMG[0].resize(20,20);
+    image(frontPowIMG[0], 289, 250);
     image(tBImgs[0][0],330,250);
     textSize(16);
     text("Mushroom and tall Bob", 460, 260);
