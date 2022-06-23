@@ -242,9 +242,13 @@ void draw() {
     powIMG[1].resize(20,20);
     image(powIMG[1], 289,210);
     image(mImgs[0][2],330, 210);
+    textSize(16);
+    text("Metal Mushroom and Metal Bob",489,230);
     powIMG[0].resize(20,20);
     image( powIMG[0], 289, 250);
     image(tBImgs[0][0],330,250);
+    textSize(16);
+    text("Mushroom and tall Bob", 460, 260);
     if (keyCode == ENTER || player.reset) {
       start = true;
       player.reset = false;
