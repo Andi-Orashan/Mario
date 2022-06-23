@@ -27,7 +27,6 @@ public class Player {
       
       // print(dead); //debug
     } else if (dead == true && big == true && inv == false) { // you get hit in big mode, you 
-      print("This portion of code works");
       dead = false;
       big = false;
     }
@@ -272,6 +271,11 @@ public class Player {
   public void update() { // if the player is jumping and not falling, they can run the jump sequence. 
     if (jump && !fall) {
       jump();
+    }
+    
+    if (dead && !big) {
+      lives -= 1;
+      pReset();
     }
     
     if (inv && iFrames + 500 <= millis()) {

@@ -135,26 +135,9 @@ void loadImages() { //self explanatory.
 }
 
 void resetLists() {
-  for (Goomba goomba : goombaList) {
-    goomba = null;
-  }
-  for (int i = 0; i < goombaList.size(); i++) {
-    goombaList.remove(goombaList.get(i));
-  }
-  
-  for (Koopa koopa : koopaList) {
-    koopa = null;
-  }
-  for (int i = 0; i < koopaList.size(); i++) {
-    koopaList.remove(koopaList.get(i));
-  }
-  
-  for (Block block : blockList) {
-    block = null;
-  }
-  for (int i = 0; i < blockList.size(); i++) {
-    blockList.remove(blockList.get(i));
-  }
+  goombaList.clear();
+  koopaList.clear();
+  blockList.clear();
 }
 
 void loadMap() {//moves the map file to a place where we could code it. 
@@ -187,13 +170,24 @@ void keyPressed() {
   }
 }
 
-void reset() {
+public void reset() {
   start = false;
   resetLists();
   createMap();
   tempLives = player.lives;
   player = new Player();
   player.lives = tempLives;
+  cameraOffset = 0;
+}
+
+public void pReset() {
+  start = false;
+  resetLists();
+  createMap();
+  tempLives = player.lives;
+  player = new Player();
+  player.lives = tempLives;
+  player.reset = true;
   cameraOffset = 0;
 }
 
@@ -241,9 +235,10 @@ void draw() {
     image(shell, 200,250);
     fill(38,142,31);
     text("Bob with PowerUps",380,190);
-    if (keyCode == ENTER) {
+    if (keyCode == ENTER || player.reset) {
       start = true;
       player.reset = false;
+      cameraOffset = 0; 
     }
   } else { //Draws the player, draws the map, drawsenemies. 
     background(0, 140, 255);
