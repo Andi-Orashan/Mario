@@ -56,7 +56,8 @@ public class PowerUp {
           player.lives++;
         }
         if (pType == 'C') {
-          
+          player.coin++;
+          score +=100;
         }
       }
     }
