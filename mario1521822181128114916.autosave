@@ -1,5 +1,4 @@
 public int cameraOffset = 0; // moves every block to the left to make scrolling.
-public int tempLives; // make resets do what we want
 public PImage[] blockImgs = new PImage[5]; // all of the blocks you can walk on or collide with have images in this list. 
 public ArrayList<String> map = new ArrayList<String>(); // matrix pulled from map.txt file. Shows where all the blocks are. 
 public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the tiles in the game. This is to make offset work. also to make storage easier.
@@ -12,8 +11,6 @@ BufferedReader reader; //class that reads map.txt
 Player player = new Player(); //creates the player. 
 public PImage open; //The title screen picture
 public PImage bg; //background image
-public PImage lose; //lost image
-public PImage win; //win image
 public PImage flagpoleIMG; //flagpole picture
 public PImage flagIMG; //flag image
 public PImage goombaIMG; //goomba picture
@@ -21,6 +18,7 @@ public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
 public PImage castle;
 public PImage coinIMG;
+//public PImage
 Flag flagpole;
 public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
 public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
@@ -30,9 +28,18 @@ public PImage[][] kImgs = new PImage[2][5];
 public PImage[] powIMG = new PImage[2];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
-public int score = 0;
 
-void createMap() {
+
+void setup() {
+  //creates the text
+  font = loadFont("LucidaSans-Typewriter-25.vlw");
+  textAlign(CENTER, CENTER);
+  size(800,600);
+  //loads maps and pictures. 
+  reader = createReader("map.txt");
+  loadImages();
+  loadMap();
+
   for (int y = 0; y < 15; y++) {
     for (int x = 0; x < 202; x++) { // places tiles
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
@@ -51,18 +58,6 @@ void createMap() {
       }
     }
   }
-}
-
-void setup() {
-  //creates the text
-  font = loadFont("LucidaSans-Typewriter-25.vlw");
-  textAlign(CENTER, CENTER);
-  size(800,600);
-  //loads maps and pictures. 
-  reader = createReader("map.txt");
-  loadImages();
-  loadMap();
-  createMap();
 }
 
 void loadImages() { //self explanatory. 
@@ -127,34 +122,9 @@ void loadImages() { //self explanatory.
   castle = loadImage("castle.png");
   powIMG[0] = loadImage("MShroom.png");
   powIMG[1] = loadImage("metalMushroom.png");
-  win = loadImage("winScreen.png");
-  lose = loadImage("gameOverSprite.png");
   for (PImage item : powIMG) {
       item.resize(40,40);
     }
-}
-
-void resetLists() {
-  for (Goomba goomba : goombaList) {
-    goomba = null;
-  }
-  for (int i = 0; i < goombaList.size(); i++) {
-    goombaList.remove(goombaList.get(i));
-  }
-  
-  for (Koopa koopa : koopaList) {
-    koopa = null;
-  }
-  for (int i = 0; i < koopaList.size(); i++) {
-    koopaList.remove(koopaList.get(i));
-  }
-  
-  for (Block block : blockList) {
-    block = null;
-  }
-  for (int i = 0; i < blockList.size(); i++) {
-    blockList.remove(blockList.get(i));
-  }
 }
 
 void loadMap() {//moves the map file to a place where we could code it. 
@@ -172,7 +142,6 @@ void loadMap() {//moves the map file to a place where we could code it.
     }
   }
 }
-
 //INPUTS!
 void keyPressed() { 
   if (keyCode == UP && !player.forceStop && !player.jump) {
@@ -187,16 +156,6 @@ void keyPressed() {
   }
 }
 
-void reset() {
-  start = false;
-  resetLists();
-  createMap();
-  tempLives = player.lives;
-  player = new Player();
-  player.lives = tempLives;
-  cameraOffset = 0;
-}
-
 void keyReleased() {
   if (keyCode == UP) {
     player.jump = false;
@@ -207,13 +166,6 @@ void keyReleased() {
   } else if (keyCode == LEFT) {
     player.goLeft = false;
   }
-}
-
-public void UI() {
-  fill(0);
-  text(score, 200, 10);
-  text(player.lives, 250, 10);
-  fill(255);
 }
 
 void draw() {
@@ -237,13 +189,15 @@ void draw() {
     text("Enemies",width/3.5, 190);
     image(goombaIMG, 200,210);
     image(koopaIMG, 230,230);
-    shell.resize(20, 20);
     image(shell, 200,250);
     fill(38,142,31);
     text("Bob with PowerUps",380,190);
+    image(powIMG[1],310,205);
     if (keyCode == ENTER) {
       start = true;
-      player.reset = false;
+    }
+    if(keyCode == 82){
+      start = false;
     }
   } else { //Draws the player, draws the map, drawsenemies. 
     background(0, 140, 255);
@@ -272,14 +226,5 @@ void draw() {
     }
     flagpole.disp();
     player.disp();
-    UI();
-    if (player.lives <= 0) {
-      image(lose, 0, 0);
-    } else if (flagpole.won == true){
-      image(win, 0, 0);
-    }
-  }
-  if(keyCode == BACKSPACE){
-    reset();
   }
 }

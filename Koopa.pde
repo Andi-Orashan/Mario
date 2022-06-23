@@ -85,6 +85,8 @@ public class Koopa {
         } else {
           player.dead = true;
           player.inv = true;
+          reset();
+          player.reset = true;
         }
         
     }
@@ -97,6 +99,8 @@ public class Koopa {
         } else {
           player.dead = true;
           player.inv = true;
+          reset();
+          player.reset = true;
         }
     }
     return false;

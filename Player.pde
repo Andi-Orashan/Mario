@@ -8,7 +8,7 @@ public class Player {
   public boolean metal = false;//lorenzo
   public boolean dead = false;
   public boolean big = false; //end
-  public boolean inv = false;
+  public boolean inv = false, reset = false;
   public Player() {
     rect = new PRect(50, width/2, 24, 24);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
