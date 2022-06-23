@@ -17,7 +17,19 @@ public class PowerUp {
         break;
       case 2: // bricks
         pType = 'U'; //1UP
-        img = powIMG[2];
+        img = powIMG[type];
+        break;
+      case 3: // bricks
+        pType = 'C'; //COIN SSSSSSSS
+        img = coinIMG;
+        break;
+      case 4: // bricks
+        pType = 'C'; //coin
+        img = coinIMG;
+        break;
+      case 5: // bricks
+        pType = 'C'; //coin
+        img = coinIMG;
         break;
       }
   }
@@ -42,6 +54,9 @@ public class PowerUp {
           player.big = true;
           score += 50;
           player.lives++;
+        }
+        if (pType == 'C') {
+          
         }
       }
     }

@@ -9,6 +9,7 @@ public class Player {
   public boolean dead = false;
   public boolean big = false; //end
   public boolean inv = false, reset = false;
+  public int coin = 0;
   public Player() {
     rect = new PRect(50, width/2, 24, 24);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
@@ -18,13 +19,16 @@ public class Player {
   public void disp() {
     //println(dead);
     //rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
-    //determines which sprites to use. 
+    //determines which sprites to use.
+    if (coin >= 10) {
+      coin -=10;
+      lives++;
+    }
     if (dead == true && big == false && inv == false) {// quick are you dead? check
       //Put end screen. 
       lives--;
       dead = false;
       inv = true;
-      
       // print(dead); //debug
     } else if (dead == true && big == true && inv == false) { // you get hit in big mode, you 
       print("This portion of code works");
@@ -231,7 +235,7 @@ public class Player {
         vel.y = 1;
         //rect.top = block.rect.bottom;
         if (block.full == true) {
-          powerList.add(new PowerUp(block.rect.centerx, block.rect.centery-TILESIZE, floor(random(2))));
+          powerList.add(new PowerUp(block.rect.centerx, block.rect.centery-TILESIZE, floor(random(6))));
           block.full = false;
         }
         if (block.type == 'B' && (big || metal)) {
