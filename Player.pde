@@ -161,14 +161,14 @@ public class Player {
         }
       }
       if (jump || fall) { //Are you jumping or falling to the right
-        rect.xSize = 52;
+        rect.xSize = 24;
         rect.ySize = 48;
         if (vel.x >= 0) {
           mImgs[2][0].resize(72, 72);
-          image(mImgs[2][0], rect.left - 10 - cameraOffset, rect.top - 16); 
+          image(mImgs[2][0], rect.left - 24 - cameraOffset, rect.top - 16); 
         } else {
           mImgs[2][1].resize(72, 72);
-          image(mImgs[2][1], rect.left - 10 - cameraOffset, rect.top - 16);
+          image(mImgs[2][1], rect.left - 24 - cameraOffset, rect.top - 16);
         }
       }
     }
@@ -193,7 +193,7 @@ public class Player {
   
   public boolean blockTopCollision() { // have you collided with the top of the block?
     for (Block block : blockList) {
-      if (rect.bottom + vel.y > block.rect.top && rect.right > block.rect.left + 2 && rect.left < block.rect.right - 2 && rect.top < block.rect.top - TILESIZE / 8) {
+      if (rect.bottom + vel.y > block.rect.top && rect.right > block.rect.left + 2 && rect.left < block.rect.right - 2 && rect.top < block.rect.top - TILESIZE / 8 && block.draw) {
         fall = false;
         vel.y = 0;
         if (rect.bottom > block.rect.top) {
@@ -207,7 +207,7 @@ public class Player {
   
   public boolean blockRightCollision() {// have you hit the right side of the block
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right + vel.x > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right + vel.x > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1 && block.draw) {
         vel.x = 0;
         return true;
       }
@@ -217,7 +217,7 @@ public class Player {
   
   public boolean blockLeftCollision() {
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + vel.x < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + vel.x < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1 && block.draw) {
         vel.x = 0;
         return true;
       }
@@ -227,12 +227,15 @@ public class Player {
   
   public boolean blockBottomCollision() {
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.centery && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top + vel.y < block.rect.bottom) {
+      if (rect.bottom > block.rect.centery && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top + vel.y < block.rect.bottom && block.draw) {
         vel.y = 1;
         //rect.top = block.rect.bottom;
         if (block.full == true) {
           powerList.add(new PowerUp(block.rect.centerx, block.rect.centery-TILESIZE, floor(random(2))));
           block.full = false;
+        }
+        if (block.type == 'B' && (big || metal)) {
+          block.draw = false;
         }
         return true;
       }
