@@ -225,18 +225,20 @@ void draw() {
     textSize(35);
     fill(255);
     text("Bob The Electrician", width/2,120);
+    fill(255);
+    rect(100,300,600,200);
     textSize(20);
+    fill(255);
     text("Use arrow keys to move",width/2,150);
     fill(111);
     rect(175,175,450,110);
-    fill(198,6,6);
+    fill(0);
     textSize(18);
     text("Enemies",width/3.5, 190);
     image(goombaIMG, 200,210);
     image(koopaIMG, 230,230);
     shell.resize(20, 20);
     image(shell, 200,250);
-    fill(38,142,31);
     text("Bob with PowerUps",380,190);
     line(270,175,270,285);
     if (keyCode == ENTER || player.reset) {
