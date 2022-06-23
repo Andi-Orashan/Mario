@@ -27,7 +27,7 @@ public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
 public PImage[][] mImgs = new PImage[3][4]; // metal sprites
 public PImage[] gImgs = new PImage[5];
 public PImage[][] kImgs = new PImage[2][5];
-public PImage[] powIMG = new PImage[3];
+public PImage[] powIMG = new PImage[2];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
 public int score = 0;
@@ -127,10 +127,8 @@ void loadImages() { //self explanatory.
   castle = loadImage("castle.png");
   powIMG[0] = loadImage("MShroom.png");
   powIMG[1] = loadImage("metalMushroom.png");
-  powIMG[2] = loadImage("1UP.png");
   win = loadImage("winScreen.png");
   lose = loadImage("gameOverSprite.png");
-  coinIMG = loadImage("coin.png");
   for (PImage item : powIMG) {
       item.resize(40,40);
     }
@@ -215,7 +213,6 @@ public void UI() {
   fill(0);
   text(score, 200, 10);
   text(player.lives, 250, 10);
-  text(player.coin, 300, 10);
   fill(255);
 }
 
@@ -242,9 +239,10 @@ void draw() {
     image(koopaIMG, 230,230);
     shell.resize(20, 20);
     image(shell, 200,250);
-    fill(38,142,31);
+    fill(31,167,5);
     text("Bob with PowerUps",380,190);
-    line(270,175,270,285);
+    
+    //image(
     if (keyCode == ENTER) {
       start = true;
       player.reset = false;
