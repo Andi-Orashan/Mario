@@ -17,7 +17,7 @@ public class Player {
   
   public void disp() {
     //println(dead);
-    rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
+    //rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
     //determines which sprites to use. 
     if (dead == true && big == false) {// quick are you dead? check
       //Put end screen. 
