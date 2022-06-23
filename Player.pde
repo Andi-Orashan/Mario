@@ -5,8 +5,9 @@ public class Player {
   public int jumpPress;
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   public int dir = 0, frame = 0, framePause = millis();
-  public boolean big = false;
-  
+  public boolean metal = false;//lorenzo
+  public boolean dead = false;
+  public boolean big = false; //end
   public Player() {
     rect = new PRect(50, width/2, 24, 39);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
@@ -16,6 +17,14 @@ public class Player {
   public void disp() {
     // rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
     //determines which sprites to use. 
+    if (dead == true && big != true) {// quick are you dead? check
+      //Put end screen. 
+      print(dead); //debug
+    } else if (dead == true && big == true) { // you get hit in big mode, you 
+      dead = false;
+      big = false;
+    }
+    
     if (vel.x > 0.1 && (!jump && !fall)) {
       pImgs[0][frame].resize(36, 48); //facing right walk
       dir = 0;
@@ -45,8 +54,16 @@ public class Player {
     }
     if (jump || fall) { //Are you jumping or falling to the right
       if (vel.x >= 0) {
-        pImgs[2][1].resize(36, 48);
-        image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
+        //EXPERIMENTAL TO CHANGE SPRITES!
+        if (metal == true) {
+          
+        } else if (big == true) {
+          
+        } else {
+          pImgs[2][1].resize(36, 48);
+          image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
+        }
+        
       } else {
         pImgs[2][0].resize(36, 48);
         image(pImgs[2][0], rect.left - 6 - cameraOffset, rect.top);
@@ -84,7 +101,7 @@ public class Player {
     return false;
   }
   
-  public boolean blockRightCollision() {// have you hit the 
+  public boolean blockRightCollision() {// have you hit the right side of the block
     for (Block block : blockList) {
       if (rect.bottom > block.rect.top + 1 && rect.right + vel.x > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
         vel.x = 0;

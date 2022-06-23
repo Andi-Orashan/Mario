@@ -16,13 +16,26 @@ public class Koopa {
     if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left && player.rect.left < rect.right && !dead) {
       dead = true;
       player.vel.y = min(-4, player.vel.y * 1.5);
+      velX = 0;
+    }
+    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left && player.rect.left < rect.right && dead) {
+      player.vel.y = min(-4, player.vel.y * 1.5);
+      if (player.rect.centerx > rect.centery) {
+        velX = -5;
+      } else {
+        velX = 5;
+      }
     }
   }
   
   public boolean blockRightCollision() {// have you hit the 
     for (Block block : blockList) {
       if (rect.bottom > block.rect.top + 1 && rect.right + velX > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
-        velX = 2;
+        if (!dead) {
+          velX = 2;
+        } else {
+          velX = 5;
+        }
         return true;
       }
     }
@@ -32,7 +45,11 @@ public class Koopa {
   public boolean blockLeftCollision() {
     for (Block block : blockList) {
       if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + velX < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1) {
-        velX = -2;
+        if (!dead) {
+          velX = -2;
+        } else {
+          velX = -5;
+        }
         return true;
       }
     }
@@ -55,9 +72,9 @@ public class Koopa {
         image(kImgs[0][frame], rect.x - cameraOffset, rect.y);
       }
     } else {
-      gImgs[4].resize(32, 32);
-      image(gImgs[4], rect.x - cameraOffset, rect.y);
-      rect.ySize = 16;
+      shell.resize(32, 32);
+      image(shell, rect.x - cameraOffset, rect.y);
+      rect.ySize = 34;
     }
   }
   
@@ -89,9 +106,7 @@ public class Koopa {
     squash();
     blockLeftCollision();
     blockRightCollision();
-    if (!dead) {
-      rect.left -= velX;
-    }
+    rect.left -= velX;
     rect.top += velY;
     rect.update();
   }
