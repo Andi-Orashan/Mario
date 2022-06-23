@@ -234,7 +234,7 @@ void draw() {
     flagpole.disp();
     player.disp();
     UI();
-    if (player.lives == 0) {
+    if (player.lives <= 0) {
       image(lose, 0, 0);
     } else if (flagpole.won == true){
       image(win, 0, 0);
