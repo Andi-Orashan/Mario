@@ -15,6 +15,10 @@ public class PowerUp {
         pType = 'M'; //metal
         img = powIMG[type];
         break;
+      case 2: // bricks
+        pType = 'U'; //1UP
+        img = powIMG[2];
+        break;
       }
   }
   public void disp() {
@@ -28,9 +32,16 @@ public class PowerUp {
         if (pType == 'M') {
           player.metal = true;
           player.big = false;
+          score += 50;
         }
         if (pType == 'S' && !player.metal) {
           player.big = true;
+          score += 50;
+        }
+        if (pType == 'U') {
+          player.big = true;
+          score += 50;
+          player.lives++;
         }
       }
     }

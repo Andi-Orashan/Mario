@@ -11,6 +11,8 @@ BufferedReader reader; //class that reads map.txt
 Player player = new Player(); //creates the player. 
 public PImage open; //The title screen picture
 public PImage bg; //background image
+public PImage lose; //lost image
+public PImage win; //win image
 public PImage flagpoleIMG; //flagpole picture
 public PImage flagIMG; //flag image
 public PImage goombaIMG; //goomba picture
@@ -27,7 +29,7 @@ public PImage[][] kImgs = new PImage[2][5];
 public PImage[] powIMG = new PImage[2];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
-
+public int score = 0;
 
 void setup() {
   //creates the text
@@ -38,7 +40,6 @@ void setup() {
   reader = createReader("map.txt");
   loadImages();
   loadMap();
-
   for (int y = 0; y < 15; y++) {
     for (int x = 0; x < 202; x++) { // places tiles
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
@@ -121,6 +122,8 @@ void loadImages() { //self explanatory.
   castle = loadImage("castle.png");
   powIMG[0] = loadImage("MShroom.png");
   powIMG[1] = loadImage("metalMushroom.png");
+  win = loadImage("winScreen.png");
+  lose = loadImage("gameOverSprite.png");
   for (PImage item : powIMG) {
       item.resize(40,40);
     }
@@ -141,6 +144,7 @@ void loadMap() {//moves the map file to a place where we could code it.
     }
   }
 }
+
 //INPUTS!
 void keyPressed() { 
   if (keyCode == UP && !player.forceStop && !player.jump) {
@@ -165,6 +169,13 @@ void keyReleased() {
   } else if (keyCode == LEFT) {
     player.goLeft = false;
   }
+}
+
+public void UI() {
+  fill(0);
+  text(score, 200, 10);
+  text(player.lives, 250, 10);
+  fill(255);
 }
 
 void draw() {
@@ -222,5 +233,11 @@ void draw() {
     }
     flagpole.disp();
     player.disp();
+    UI();
+    if (player.lives == 0) {
+      image(lose, 0, 0);
+    } else if (flagpole.won == true){
+      image(win, 0, 0);
+    }
   }
 }

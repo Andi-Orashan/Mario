@@ -19,6 +19,7 @@ public class Koopa {
       velX = 0;
       wait = true;
       waitCooldown = millis();
+      score+=150;
     }
     if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 20 && player.rect.right > rect.left && player.rect.left < rect.right && dead && !wait) {
       player.vel.y = min(-4, player.vel.y * 1.5);
@@ -34,6 +35,7 @@ public class Koopa {
       if ((rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.left + velX < koopa.rect.right + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false)) {
         if (koopa.dead == true) {
           dead = true;
+          score+= 200;
         }
       }
     }
@@ -43,6 +45,7 @@ public class Koopa {
       if (rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.right + velX < koopa.rect.left + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false) {
         if (koopa.dead == true) {
           dead = true;
+          score+= 200;
         }
       }
     }
