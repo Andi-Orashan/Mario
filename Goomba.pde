@@ -28,18 +28,37 @@ public class Goomba {
     }
     return false;
   }
-  
+  // all of my silly code. 
   public boolean blockLeftCollision() {
     for (Block block : blockList) {
       if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + velX < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1) {
         velX = -2;
         return true;
-      }
+      }   
     }
     return false;
   }
-  
-  
+  public boolean playerLeftCollision() {
+      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
+        if (player.metal == true) {
+          dead = true;
+        } else {
+          player.dead = true;
+        }
+        
+    }
+    return false;
+  }
+  public boolean playerRightCollision() {
+      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
+        if (player.metal == true) {
+          dead = true;
+        } else {
+          player.dead = true;
+        }
+    }
+    return false;
+  }
   public void animate() {
     if (!dead) {
       if (framePause + 200 <= millis()) {
@@ -84,6 +103,8 @@ public class Goomba {
     squash();
     blockLeftCollision();
     blockRightCollision();
+    playerLeftCollision();
+    playerRightCollision();
     if (!dead) {
       rect.left -= velX;
     }

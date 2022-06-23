@@ -19,5 +19,6 @@ public class PRect {  // does movement. Only andrew understands it.
     center[0] = centerx; center[1] = centery;
     topleft[0] = left; topleft[1] = top;
     bottomright[0] = right; bottomright[1] = bottom;
+    
   }
 }

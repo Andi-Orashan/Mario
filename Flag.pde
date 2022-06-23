@@ -13,7 +13,8 @@ public class Flag {
   public void disp() { 
     image(flagpoleIMG, rect.x - cameraOffset, rect.y-360);
     image(flagIMG, rect.x-16 - cameraOffset, (rect.y-345)+flagHeight);
-    image(castle, rect.x + 100 -cameraOffset, rect.y - 500);
+    castle.resize(100,100);
+    image(castle, rect.x + 100 -cameraOffset, rect.y-60); //fixed!
     if (player.rect.x >= rect.x) { //drops the flag if you get to it. 
       won = true;
     }
