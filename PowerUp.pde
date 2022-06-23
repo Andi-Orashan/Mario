@@ -37,6 +37,7 @@ public class PowerUp {
     //println(player.rect.centerx);
     //println(rect.centery +"     " +rect.centerx);
     if (show == true) {
+      img.resize(40, 40);
       image(img, rect.left-TILESIZE/2 - cameraOffset, rect.top-TILESIZE/2);
       //collision
       if (player.rect.right > rect.left && player.rect.left < rect.right && player.rect.bottom > rect.top && player.rect.top < rect.bottom) {
