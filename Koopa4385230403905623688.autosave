@@ -13,15 +13,15 @@ public class Koopa {
   }
   
   public void squash() {
-    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left - 3 && player.rect.left < rect.right + 3 && !dead) {
+    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left && player.rect.left < rect.right && !dead) {
       dead = true;
       player.vel.y = min(-4, player.vel.y * 1.5);
       velX = 0;
       wait = true;
       waitCooldown = millis();
-    }
-    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 20 && player.rect.right > rect.left && player.rect.left < rect.right && dead && !wait) {
+    } else if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 2 && player.rect.right > rect.left && player.rect.left < rect.right && dead && !wait) {
       player.vel.y = min(-4, player.vel.y * 1.5);
+      println(true);
       if (player.rect.centerx > rect.centery) {
         velX = -5;
       } else {
@@ -59,7 +59,7 @@ public class Koopa {
   }
   
   public boolean playerLeftCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1) {
+      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
         if (player.metal == true) {
           dead = true;
         } else {
@@ -70,7 +70,7 @@ public class Koopa {
     return false;
   }
   public boolean playerRightCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1) {
+      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
         if (player.metal == true) {
           dead = true;
         } else {
@@ -127,13 +127,14 @@ public class Koopa {
   public void update() {
     gravity();
     squash();
-    if (wait && waitCooldown + 300 <= millis()) {
-      wait = false;
-    }
     blockLeftCollision();
     blockRightCollision();
     playerLeftCollision();
     playerRightCollision();
+    if (wait && waitCooldown + 500 <= millis()) {
+      wait = false;
+      print("not wait");
+    }
     rect.left -= velX;
     rect.top += velY;
     rect.update();

@@ -19,7 +19,7 @@ public class Player {
     //determines which sprites to use. 
     if (dead == true && big != true) {// quick are you dead? check
       //Put end screen. 
-      print(dead); //debug
+      // print(dead); //debug
     } else if (dead == true && big == true) { // you get hit in big mode, you 
       dead = false;
       big = false;

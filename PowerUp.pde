@@ -18,8 +18,8 @@ public class PowerUp {
       }
   }
   public void disp() {
-    println(player.rect.centerx);
-    println(rect.centery +"     " +rect.centerx);
+    //println(player.rect.centerx);
+    //println(rect.centery +"     " +rect.centerx);
     if (show == true) {
       image(img, rect.left-TILESIZE/2 - cameraOffset, rect.top-TILESIZE/2);
       //collision
