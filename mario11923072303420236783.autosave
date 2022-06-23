@@ -6,7 +6,6 @@ public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the
 public ArrayList<Goomba> goombaList = new ArrayList<Goomba>();
 public ArrayList<Koopa> koopaList = new ArrayList<Koopa>();
 public ArrayList<PowerUp> powerList = new ArrayList<PowerUp>();
-public int tempCoins;
 String line; // buffer variable to read text file. 
 public int TILESIZE = 40; //for scaling purposes
 BufferedReader reader; //class that reads map.txt
@@ -179,9 +178,7 @@ public void reset() {
   createMap();
   tempLives = player.lives;
   player = new Player();
-  player.lives = 3;
-  score = 0;
-  player.coin = 0;
+  player.lives = tempLives;
   cameraOffset = 0;
 }
 
@@ -190,10 +187,8 @@ public void pReset() {
   resetLists();
   createMap();
   tempLives = player.lives;
-  tempCoins = player.coin;
   player = new Player();
   player.lives = tempLives;
-  player.coin = tempCoins;
   player.reset = true;
   cameraOffset = 0;
 }
@@ -248,13 +243,12 @@ void draw() {
     line(270,175,270,285);
     powIMG[1].resize(20,20);
     image(powIMG[1], 289,210);
-    mImgs[0][2].resize(20,40);
     image(mImgs[0][2],330, 210);
     textSize(16);
     text("Metal Mushroom and Metal Bob",489,230);
     powIMG[0].resize(20,20);
     image( powIMG[0], 289, 250);
-    tBImgs[0][0].resize(20,40);
+    
     image(tBImgs[0][0],330,250);
     textSize(16);
     text("Mushroom and tall Bob", 460, 260);
