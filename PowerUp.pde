@@ -4,6 +4,7 @@ public class PowerUp {
   PImage img;
   boolean show = true;
   boolean hasSpawned1UP = false;
+  
   PowerUp(float x, float y, int type) {
     rect = new PRect(x, y, TILESIZE, TILESIZE);
     switch (type) { 
@@ -14,6 +15,7 @@ public class PowerUp {
       case 1: // bricks
         pType = 'M'; //metal
         img = powIMG[type];
+        player.timer = millis();
         break;
       case 2: 
       if (hasSpawned1UP == false) {
