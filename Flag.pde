@@ -14,7 +14,7 @@ public class Flag {
     image(flagpoleIMG, rect.x - cameraOffset, rect.y-360);
     image(flagIMG, rect.x-16 - cameraOffset, (rect.y-345)+flagHeight);
     castle.resize(200,200);
-    image(castle, rect.x + 100 -cameraOffset, rect.y-120); //fixed!
+    image(castle, rect.x + 100 -cameraOffset, rect.y-160); //fixed!
     if (player.rect.x >= rect.x) { //drops the flag if you get to it. 
       won = true;
     }
