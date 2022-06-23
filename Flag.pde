@@ -16,10 +16,12 @@ public class Flag {
     castle.resize(200,200);
     image(castle, rect.x + 100 -cameraOffset, rect.y-160); //fixed!
     if (player.rect.x >= rect.x) { //drops the flag if you get to it. 
+      if (flagHeight <= 300) {
+      flagHeight += 3;
+    } else {
       won = true;
     }
-    if (won == true && flagHeight <= 300) {
-      flagHeight += 3;
     }
+    
   }
 }

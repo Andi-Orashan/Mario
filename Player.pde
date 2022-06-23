@@ -2,13 +2,13 @@ public class Player {
   public PRect rect;
   public PVector acc, vel; 
   public float fric, grav; //things moving against the players movement. 
-  public int jumpPress, lives;
+  public int jumpPress, lives=3;
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   public int dir = 0, frame = 0, framePause = millis(), iFrames;
   public boolean metal = false;//lorenzo
   public boolean dead = false;
   public boolean big = false; //end
-  public boolean inv;
+  public boolean inv = false;
   public Player() {
     rect = new PRect(50, width/2, 24, 24);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
@@ -19,10 +19,14 @@ public class Player {
     //println(dead);
     //rect(rect.left - cameraOffset, rect.top, rect.xSize, rect.ySize); //removed code.
     //determines which sprites to use. 
-    if (dead == true && big == false) {// quick are you dead? check
+    if (dead == true && big == false && inv == false) {// quick are you dead? check
       //Put end screen. 
+      lives--;
+      dead = false;
+      inv = true;
+      
       // print(dead); //debug
-    } else if (dead == true && big == true) { // you get hit in big mode, you 
+    } else if (dead == true && big == true && inv == false) { // you get hit in big mode, you 
       print("This portion of code works");
       dead = false;
       big = false;
