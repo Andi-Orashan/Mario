@@ -29,7 +29,24 @@ public class Koopa {
       }
     }
   }
-  
+  public void shellLeftCollision() {
+    for (Koopa koopa: koopaList) {
+      if ((rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.left + velX < koopa.rect.right + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false)) {
+        if (koopa.dead == true) {
+          dead = true;
+        }
+      }
+    }
+  }
+  public void shellRightCollision() {
+    for (Koopa koopa: koopaList) {
+      if (rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.right + velX < koopa.rect.left + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false) {
+        if (koopa.dead == true) {
+          dead = true;
+        }
+      }
+    }
+  }
   public boolean blockRightCollision() {// have you hit the 
     for (Block block : blockList) {
       if (rect.bottom > block.rect.top + 1 && rect.right + velX > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
@@ -134,6 +151,8 @@ public class Koopa {
     blockRightCollision();
     playerLeftCollision();
     playerRightCollision();
+    shellLeftCollision();
+    shellRightCollision();
     rect.left -= velX;
     rect.top += velY;
     rect.update();

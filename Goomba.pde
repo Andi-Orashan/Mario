@@ -39,7 +39,7 @@ public class Goomba {
     return false;
   }
   public boolean playerLeftCollision() {
-      if (rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1 && dead == false) {
+      if ((rect.bottom > player.rect.top + 1 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top < player.rect.bottom - 1 && dead == false)) {
         if (player.metal == true) {
           dead = true;
         } else {
@@ -58,6 +58,24 @@ public class Goomba {
         }
     }
     return false;
+  }
+  public void shellLeftCollision() {
+    for (Koopa koopa: koopaList) {
+      if ((rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.left + velX < koopa.rect.right + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false)) {
+        if (koopa.dead == true) {
+          dead = true;
+        }
+      }
+    }
+  }
+  public void shellRightCollision() {
+    for (Koopa koopa: koopaList) {
+      if (rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.right + velX < koopa.rect.left + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false) {
+        if (koopa.dead == true) {
+          dead = true;
+        }
+      }
+    }
   }
   public void animate() {
     if (!dead) {
@@ -105,6 +123,8 @@ public class Goomba {
     blockRightCollision();
     playerLeftCollision();
     playerRightCollision();
+    shellLeftCollision();
+    shellRightCollision();
     if (!dead) {
       rect.left -= velX;
     }
