@@ -41,7 +41,7 @@ void setup() {
   loadImages();
   loadMap();
   for (int y = 0; y < 15; y++) {
-    for (int x = 0; x < 202; x++) { // places tiles
+    for (int x = 0; x < 246; x++) { // places tiles
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
         blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
       }
@@ -234,6 +234,9 @@ void draw() {
     flagpole.disp();
     player.disp();
     UI();
+    if(player.rect.y > 800){
+      player.dead = true;
+    }
     if (player.lives <= 0) {
       image(lose, 0, 0);
     } else if (flagpole.won == true){
