@@ -2,11 +2,12 @@ public class Block {
   PRect rect;
   char type;
   PImage img;
-  boolean full;
+  boolean full, draw;
   // which block is this? and lets grab its sprites. Hitboxes are somewhereelse.   
   public Block(int x, int y, char type) {
     rect = new PRect(x, y, TILESIZE, TILESIZE);
     this.type = type;
+    draw = true;
     switch (type) { 
       case 'G': // ground
         img = blockImgs[0];
@@ -29,9 +30,11 @@ public class Block {
   }
   //displays the picture. 
   public void disp() {
-    image(img, rect.x - cameraOffset, rect.y);
-    if (full == false && type == 'M') {
-      img = blockImgs[3];
+    if (draw) {
+      image(img, rect.x - cameraOffset, rect.y);
+      if (full == false && type == 'M') {
+        img = blockImgs[3];
+      }
     }
   }
 }
