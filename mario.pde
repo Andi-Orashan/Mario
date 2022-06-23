@@ -6,6 +6,7 @@ public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the
 public ArrayList<Goomba> goombaList = new ArrayList<Goomba>();
 public ArrayList<Koopa> koopaList = new ArrayList<Koopa>();
 public ArrayList<PowerUp> powerList = new ArrayList<PowerUp>();
+public int tempCoins;
 String line; // buffer variable to read text file. 
 public int TILESIZE = 40; //for scaling purposes
 BufferedReader reader; //class that reads map.txt
@@ -178,7 +179,9 @@ public void reset() {
   createMap();
   tempLives = player.lives;
   player = new Player();
-  player.lives = tempLives;
+  player.lives = 3;
+  score = 0;
+  player.coin = 0;
   cameraOffset = 0;
 }
 
@@ -187,8 +190,10 @@ public void pReset() {
   resetLists();
   createMap();
   tempLives = player.lives;
+  tempCoins = player.coin;
   player = new Player();
   player.lives = tempLives;
+  player.coin = tempCoins;
   player.reset = true;
   cameraOffset = 0;
 }

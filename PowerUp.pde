@@ -21,6 +21,7 @@ public class PowerUp {
       if (hasSpawned1UP == false) {
         pType = 'U'; //1UP
         img = powIMG[type];
+        hasSpawned1UP = true;
       } else {
         pType = 'C'; //COIN SSSSSSSS
         img = coinIMG;
