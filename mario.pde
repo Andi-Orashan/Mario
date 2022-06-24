@@ -42,7 +42,7 @@ public PImage[] frontPowIMG = new PImage[3]; // beginning screen powerup images
 public PImage[] breakImgs = new PImage[7];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
-public int score = 0, level = 1;
+public int score = 0, level = 3;
 
 void createMap() { // instantiate objects from map.txt file
   for (int y = 0; y < 15; y++) {
@@ -228,6 +228,20 @@ public void pReset() { // reset most variables, this is on death
   cameraOffset = 0;
 }
 
+public void bReset() { // reset most variables, this is on death
+  start = false;
+  resetLists();
+  loadMap();
+  createMap();
+  tempLives = player.lives - 1;
+  tempCoins = player.coin;
+  player = new Player();
+  player.lives = tempLives + 1;
+  player.coin = tempCoins;
+  player.reset = true;
+  cameraOffset = 0;
+}
+
 void keyReleased() { // check if arrow keys have been released
   if (keyCode == UP) {
     player.jump = false;
@@ -355,7 +369,7 @@ void draw() {
     }
   }
   if (keyCode == BACKSPACE) { // if backspace was pressed, restart
-    reset();
+    bReset();
   } else if (keyCode == DELETE) {
     level = 1;
     reset();

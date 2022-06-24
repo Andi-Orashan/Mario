@@ -27,7 +27,7 @@ public class Goomba {
   
   public boolean blockRightCollision() {// check if the right side collided with a block
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right + velX > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right + velX > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1 && block.draw) {
         velX = 2; // swap direction
         return true;
       }
@@ -37,7 +37,7 @@ public class Goomba {
 
   public boolean blockLeftCollision() {// check if the left side collided with a block
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + velX < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + velX < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1 && block.draw) {
         velX = -2; // swap direction
         return true;
       }   
@@ -110,7 +110,7 @@ public class Goomba {
   
   public boolean blockTopCollision() { // have you collided with the top of the block?
     for (Block block : blockList) {
-      if (rect.bottom + velY > block.rect.top && rect.right > block.rect.left + 2 && rect.left < block.rect.right - 2 && rect.top < block.rect.top - TILESIZE / 8) {
+      if (rect.bottom + velY > block.rect.top && rect.right > block.rect.left + 2 && rect.left < block.rect.right - 2 && rect.top < block.rect.top - TILESIZE / 8 && block.draw) {
         velY = 0; // set y velocity to 0
         if (rect.bottom > block.rect.top) {
           rect.top = block.rect.top - rect.ySize; // move object to top of collided block
