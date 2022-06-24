@@ -286,8 +286,11 @@ void draw() {
     textSize(16);
     text("Mushroom and Tall Bob", 455, 260);
     upArrowKey.resize(38,38);
-    image(upArrowKey,130,320);
-    
+    image(upArrowKey,130,310);
+    rightArrowKey.resize(38,38);
+    image(rightArrowKey,130,360);
+    leftArrowKey.resize(38,38);
+    image(leftArrowKey,130,410);
     
     if (keyCode == ENTER || player.reset) {
       start = true;
