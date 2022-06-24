@@ -293,6 +293,8 @@ void draw() {
     image(rightArrowKey,130,360);
     leftArrowKey.resize(38,38);
     image(leftArrowKey,130,410);
+    backspace.resize(600,150);
+    image(backspace,125,460);
     
     if (keyCode == ENTER || player.reset) {
       start = true;
