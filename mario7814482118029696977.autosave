@@ -14,7 +14,6 @@ BufferedReader reader; //class that reads map.txt
 Player player = new Player(); //creates the player. 
 public PImage open; //The title screen picture
 public PImage bg; //background image
-public PImage bgNew;
 public PImage lose; //lost image
 public PImage win; //win image
 public PImage flagpoleIMG; //flagpole picture
@@ -42,7 +41,7 @@ public PImage[] frontPowIMG = new PImage[3]; // beginning screen powerup images
 public PImage[] breakImgs = new PImage[7];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
-public int score = 0, level = 1;
+public int score = 0;
 
 void createMap() { // instantiate objects from map.txt file
   for (int y = 0; y < 15; y++) {
@@ -71,6 +70,7 @@ void setup() {
   textAlign(CENTER, CENTER);
   size(800,600);
   //loads maps and pictures. 
+  reader = createReader("map.txt");
   loadImages();
   loadMap();
   createMap();
@@ -79,7 +79,6 @@ void setup() {
 void loadImages() { // self-explanatory
   open = loadImage("image.png");
   bg = loadImage("background.png");
-  bgNew = loadImage("bgNoBush.png");
   blockImgs[0] = loadImage("crackedTile.png");
   blockImgs[1] = loadImage("bigTile.png");
   blockImgs[2] = loadImage("brickTile.png");
@@ -157,10 +156,10 @@ void loadImages() { // self-explanatory
   lose = loadImage("gameOverSprite.png");
   coinIMG = loadImage("coin.png");
   peach = loadImage("Peach.png.png");
-  upArrowKey = loadImage("upArrowKey.png");
-  leftArrowKey = loadImage("leftArrowKey.png");
-  rightArrowKey = loadImage("rightArrowKey.png");
-  backspace = loadImage("backspace.png");
+upArrowKey = loadImage("upArrowKey.png");
+leftArrowKey = loadImage("leftArrowKey.png");
+rightArrowKey = loadImage("rightArrowKey.png");
+backspace= loadImage("backspace.png");
 }
 void resetLists() { // also self-explanatory
   goombaList.clear();
@@ -170,8 +169,6 @@ void resetLists() { // also self-explanatory
 }
 
 void loadMap() { // takes the text from the file and stores it in a matrix
-  reader = createReader("map"+level+".txt");
-  map.clear();
   for (int i = 0; i < 15; i++) {
     try { // code taken from Processing documentation
       line = reader.readLine();
@@ -204,7 +201,6 @@ void keyPressed() { // check if arrow keys are pressed
 public void reset() { // reset all variables; essentially a restart without hitting the run button
   start = false;
   resetLists();
-  loadMap();
   createMap();
   tempLives = player.lives;
   player = new Player();
@@ -217,7 +213,6 @@ public void reset() { // reset all variables; essentially a restart without hitt
 public void pReset() { // reset most variables, this is on death
   start = false;
   resetLists();
-  loadMap();
   createMap();
   tempLives = player.lives;
   tempCoins = player.coin;
@@ -249,7 +244,6 @@ public void UI() { // text and images for user interface
   coinUI.resize(20, 20);
   image(coinUI, 272, 5);
   text(player.coin, 300, 15);
-  text("Level: "+level, 375, 15);
   fill(255);
 }
 
@@ -257,22 +251,30 @@ void draw() {
   if (start == false) { // draws the title screen; text and images
     textFont(font, 40);
     image(open, 0, 0);
-    fill(255);
-    textSize(22);
-    text("Press Enter to Play", width/2, 150);
+    fill(7,113,20);
+    rect(280, 325,230,50);
+    fill(0,0,0);
+    textSize(18);
+    text("Press Enter to Play", 395, 350);
     textSize(35);
+    fill(255);
     text("Bob The Electrician", width/2,120);
     fill(0);
     rect(100,300,600,200);
+    textSize(20);
+    fill(255);
+    text("Use arrow keys to move",width/2,150);
     fill(111);
     rect(175,175,450,110);
     fill(0);
     textSize(18);
-    text("Enemies -",width/3.5 - 5, 190);
-    image(goombaIMG, 310,180);
-    image(koopaIMG, 290,180);
+    text("Enemies",width/3.5 - 5, 190);
+    image(goombaIMG, 200,210);
+    image(koopaIMG, 230,230);
     shell.resize(20, 20);
-    image(shell, 270,180);
+    image(shell, 200,250);
+    text("Bob with PowerUps",380,190);
+    line(270,175,270,285);
     frontPowIMG[1].resize(20,20);
     image(frontPowIMG[1], 289,210);
     mImgs[0][2].resize(20,40);
@@ -294,11 +296,7 @@ void draw() {
     backspace.resize(400,160);
     image(backspace,125,460);
     fill(111);
-    text("- Press Right Key to go Right", 320,380);
-    text("- Press Left Key to go Left", 313,430);
-    text("- Press the Up Key To Jump",305,330);
-    text("- Press Backspace to Restart", 340,480);
-    image(coinIMG,500,320);
+    text("- Press the Up Key to Jump", 310,330);
     
     if (keyCode == ENTER || player.reset) {
       start = true;
@@ -307,11 +305,7 @@ void draw() {
     }
   } else { // Draws the player, draws the map, draws enemies
     background(0, 140, 255);
-    if (level == 1) {
-      image(bg, 0 - cameraOffset / (6), 0); // draw background image
-    } else if (level > 1) {
-      image(bgNew, 0 - cameraOffset / 6, 0);
-    }
+    image(bg, 0 - cameraOffset / (5), 0); // drwa background image
     fill(255);
     // update all sprites
     player.update();
@@ -355,9 +349,6 @@ void draw() {
     }
   }
   if (keyCode == BACKSPACE) { // if backspace was pressed, restart
-    reset();
-  } else if (keyCode == DELETE) {
-    level = 1;
     reset();
   }
 }
