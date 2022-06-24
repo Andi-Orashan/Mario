@@ -42,24 +42,26 @@ public PImage[] frontPowIMG = new PImage[3]; // beginning screen powerup images
 public PImage[] breakImgs = new PImage[7];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
-public int score = 0, level = 3;
+public int score = 0, level = 1;
 
 void createMap() { // instantiate objects from map.txt file
-  for (int y = 0; y < 15; y++) {
-    for (int x = 0; x < 246; x++) { // places tiles
-      if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
-        blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
-      }
-      if (map.get(y).charAt(x) == 'F') {
-        flagpole = (new Flag(x*40, y*40));
-        flagpole.img.resize(40, 400);
-        flagIMG.resize(40,40);
-      }
-      if (map.get(y).charAt(x) == 'g') {
-        goombaList.add(new Goomba(x*40, y*40));
-      }
-      if (map.get(y).charAt(x) == 'k') {
-        koopaList.add(new Koopa(x*40, y*40));
+  if (level <= 3) {
+    for (int y = 0; y < 15; y++) {
+      for (int x = 0; x < 246; x++) { // places tiles
+        if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
+          blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
+        }
+        if (map.get(y).charAt(x) == 'F') {
+          flagpole = (new Flag(x*40, y*40));
+          flagpole.img.resize(40, 400);
+          flagIMG.resize(40,40);
+        }
+        if (map.get(y).charAt(x) == 'g') {
+          goombaList.add(new Goomba(x*40, y*40));
+        }
+        if (map.get(y).charAt(x) == 'k') {
+          koopaList.add(new Koopa(x*40, y*40));
+        }
       }
     }
   }
@@ -170,19 +172,21 @@ void resetLists() { // also self-explanatory
 }
 
 void loadMap() { // takes the text from the file and stores it in a matrix
-  reader = createReader("map"+level+".txt");
-  map.clear();
-  for (int i = 0; i < 15; i++) {
-    try { // code taken from Processing documentation
-      line = reader.readLine();
-    } catch (IOException e) {
-      e.printStackTrace();
-      line = null;
-    }
-    if (line == null) {
-      exit();
-    } else {
-      map.add(line);
+  if (level <= 3) {
+    reader = createReader("map"+level+".txt");
+    map.clear();
+    for (int i = 0; i < 15; i++) {
+      try { // code taken from Processing documentation
+        line = reader.readLine();
+      } catch (IOException e) {
+        e.printStackTrace();
+        line = null;
+      }
+      if (line == null) {
+        exit();
+      } else {
+        map.add(line);
+      }
     }
   }
 }
@@ -321,58 +325,62 @@ void draw() {
       cameraOffset = 0; 
     }
   } else { // Draws the player, draws the map, draws enemies
-    background(0, 140, 255);
-    if (level == 1) {
-      image(bg, 0 - cameraOffset / (6), 0); // draw background image
-    } else if (level > 1) {
-      image(bgNew, 0 - cameraOffset / 6, 0);
-    }
-    fill(255);
-    // update all sprites
-    player.update();
-    for (Coin coin : coinList) {
-      coin.update();
-    }
-    for (Goomba goomba : goombaList) {
-      goomba.update();
-    }
-    for (Koopa koopa : koopaList) {
-      koopa.update();
-    }
-    // draw all sprites
-    for (Coin coin : coinList) {
-      coin.disp();
-    }
-    for (Block block : blockList) {
-      block.img.resize(TILESIZE, TILESIZE);
-      block.disp();
-    }
-    for (Goomba goomba : goombaList) {
-      goomba.disp();
-    }
-    for (Koopa koopa : koopaList) {
-      koopa.disp();
-    }
-    for (PowerUp power : powerList) {
-      power.disp();
-    }
-    flagpole.disp();
-    player.disp();
-    UI();
-    
-    if (player.rect.y > height + 200) { // if the player falls below the map, kill them
-      player.dead = true;
-    }
-    if (player.lives <= 0) { // show losing end screen
-      image(lose, 0, 0);
-    } else if (flagpole.won == true) { // show winning end screen
+    if (level <= 3) {
+      background(0, 140, 255);
+      if (level == 1) {
+        image(bg, 0 - cameraOffset / (6), 0); // draw background image
+      } else if (level > 1) {
+        image(bgNew, 0 - cameraOffset / 6, 0);
+      }
+      fill(255);
+      // update all sprites
+      player.update();
+      for (Coin coin : coinList) {
+        coin.update();
+      }
+      for (Goomba goomba : goombaList) {
+        goomba.update();
+      }
+      for (Koopa koopa : koopaList) {
+        koopa.update();
+      }
+      // draw all sprites
+      for (Coin coin : coinList) {
+        coin.disp();
+      }
+      for (Block block : blockList) {
+        block.img.resize(TILESIZE, TILESIZE);
+        block.disp();
+      }
+      for (Goomba goomba : goombaList) {
+        goomba.disp();
+      }
+      for (Koopa koopa : koopaList) {
+        koopa.disp();
+      }
+      for (PowerUp power : powerList) {
+        power.disp();
+      }
+      flagpole.disp();
+      player.disp();
+      UI();
+      
+      if (player.rect.y > height + 200) { // if the player falls below the map, kill them
+        player.dead = true;
+      }
+      if (player.lives <= 0) { // show losing end screen
+        image(lose, 0, 0);
+      } else if (flagpole.won == true) { // show winning end screen
+        image(win, 0, 0);
+      }
+    } else {
       image(win, 0, 0);
     }
-  }
-  if (keyCode == BACKSPACE) { // if backspace was pressed, restart
-    bReset();
-  } else if (keyCode == DELETE) {
-    level = 1;
-    reset();
+    if (keyCode == BACKSPACE) { // if backspace was pressed, restart
+      bReset();
+    } else if (keyCode == DELETE) {
+      level = 1;
+      reset();
+    }
   }
 }
