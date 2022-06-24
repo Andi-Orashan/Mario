@@ -36,7 +36,7 @@ public class Player {
     
     if (!dead || big) {
       if (!big && !metal) {
-        if (!jump && !fall) {
+        if (!jump && !fall) { // use small sprites
           rect.ySize = 30;
           rect.xSize = 24;
         }
@@ -69,24 +69,16 @@ public class Player {
         }
         if (jump || fall) { //Are you jumping or falling to the right
           if (vel.x >= 0) {
-            //EXPERIMENTAL TO CHANGE SPRITES!
-            if (metal == true) {
-              
-            } else if (big == true) {
-              
-            } else {
-              pImgs[2][1].resize(36, 36);
-              image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
-            }
-            
-          } else {
+            pImgs[2][1].resize(36, 36);
+            image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);          
+          } else { // to the left
             pImgs[2][0].resize(36, 36);
             image(pImgs[2][0], rect.left - 6 - cameraOffset, rect.top);
           }
         }
       }
       
-      if (big) {
+      if (big) { // same as above code but tall
         if (!jump && !fall) {
           rect.ySize = 58;
           rect.xSize = 24;
@@ -131,7 +123,7 @@ public class Player {
         }
       }
       
-      if (metal) {
+      if (metal) { // same as above code but metal
         if (!jump && !fall) {
           rect.ySize = 58;
           rect.xSize = 24;
@@ -221,7 +213,7 @@ public class Player {
     return false;
   }
   
-  public boolean blockLeftCollision() {
+  public boolean blockLeftCollision() { // left side collision
     for (Block block : blockList) {
       if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + vel.x < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1 && block.draw) {
         vel.x = 0;
@@ -231,11 +223,11 @@ public class Player {
     return false;
   }
   
-  public boolean blockBottomCollision() {
+  public boolean blockBottomCollision() { // bottom collision
     for (Block block : blockList) {
       if (rect.bottom > block.rect.centery && rect.right > block.rect.left + 1 && rect.left < block.rect.right - 1 && rect.top + vel.y < block.rect.bottom && block.draw) {
         vel.y = 1;
-        //rect.top = block.rect.bottom;
+        //rect.top = block.rect.bottom; (debug)
         if (block.full == true) {
           powerList.add(new PowerUp(block.rect.centerx, block.rect.centery-TILESIZE, floor(random(6))));
           block.full = false;
@@ -275,12 +267,15 @@ public class Player {
     }
   }
   
-  public void update() { // if the player is jumping and not falling, they can run the jump sequence. 
-    if (jump && !fall && !deadJump) {
+  public void update() { 
+    if (flagpole.won) {
+      lives = 10; // if the player won, keep the player from dying
+    }
+    if (jump && !fall && !deadJump) { // if the player is jumping and not falling, they can run the jump sequence
       jump();
     }
     
-    if (dead && !big) {
+    if (dead && !big) { // if the player died, run death animation
       if (!deadJump) {
         deadJump = true;
         vel.x = 0;
@@ -293,14 +288,14 @@ public class Player {
       }
     }
     
-    if (dieEnd && !big) {
+    if (dieEnd && !big) { // after death animation, reset and remove a life
       lives -= 1;
       dead = false;
       dieEnd = false;
       pReset();
     }
     
-    if (inv && iFrames + 500 <= millis()) {
+    if (inv && iFrames + 500 <= millis()) { // reset invincibility cooldown
       inv = false;
     }
     

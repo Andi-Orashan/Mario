@@ -3,11 +3,11 @@ public int tempLives; // make resets do what we want
 public PImage[] blockImgs = new PImage[5]; // all of the blocks you can walk on or collide with have images in this list. 
 public ArrayList<String> map = new ArrayList<String>(); // matrix pulled from map.txt file. Shows where all the blocks are. 
 public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the tiles in the game. This is to make offset work. also to make storage easier.
-public ArrayList<Goomba> goombaList = new ArrayList<Goomba>();
-public ArrayList<Koopa> koopaList = new ArrayList<Koopa>();
-public ArrayList<PowerUp> powerList = new ArrayList<PowerUp>();
-public ArrayList<Coin> coinList = new ArrayList<Coin>();
-public int tempCoins;
+public ArrayList<Goomba> goombaList = new ArrayList<Goomba>(); // goomba list
+public ArrayList<Koopa> koopaList = new ArrayList<Koopa>(); // koopa list
+public ArrayList<PowerUp> powerList = new ArrayList<PowerUp>(); // powerup list
+public ArrayList<Coin> coinList = new ArrayList<Coin>(); // coin list
+public int tempCoins; // store coins
 String line; // buffer variable to read text file. 
 public int TILESIZE = 40; //for scaling purposes
 BufferedReader reader; //class that reads map.txt
@@ -21,23 +21,23 @@ public PImage flagIMG; //flag image
 public PImage goombaIMG; //goomba picture
 public PImage koopaIMG; //koopa picture
 public PImage shell; //shell picture
-public PImage castle;
-public PImage coinIMG;
-public PImage pUI;
-public PImage coinUI;
-Flag flagpole;
-public PImage[][] pImgs = new PImage[3][4]; //player sprites. All of them. 
+public PImage castle; // castle picture
+public PImage coinIMG; // coin picture
+public PImage pUI; // player image for UI
+public PImage coinUI; // coin image for UI
+Flag flagpole; // initialize flag object
+public PImage[][] pImgs = new PImage[3][4]; // player sprites 
 public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
 public PImage[][] mImgs = new PImage[3][4]; // metal sprites
-public PImage[] gImgs = new PImage[5];
-public PImage[][] kImgs = new PImage[2][5];
-public PImage[] powIMG = new PImage[3];
-public PImage[] frontPowIMG = new PImage[3];
+public PImage[] gImgs = new PImage[5]; // goomba images
+public PImage[][] kImgs = new PImage[2][5]; // koopa images
+public PImage[] powIMG = new PImage[3]; // powerup images
+public PImage[] frontPowIMG = new PImage[3]; // beginning screen powerup images
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
 public int score = 0;
 
-void createMap() {
+void createMap() { // instantiate objects from map.txt file
   for (int y = 0; y < 15; y++) {
     for (int x = 0; x < 246; x++) { // places tiles
       if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
@@ -70,7 +70,7 @@ void setup() {
   createMap();
 }
 
-void loadImages() { //self explanatory. 
+void loadImages() { // self-explanatory
   open = loadImage("image.png");
   bg = loadImage("background.png");
   blockImgs[0] = loadImage("crackedTile.png");
@@ -142,21 +142,18 @@ void loadImages() { //self explanatory.
   win = loadImage("winScreen.png");
   lose = loadImage("gameOverSprite.png");
   coinIMG = loadImage("coin.png");
-  for (PImage item : powIMG) {
-      item.resize(40,40);
-    }
 }
 
-void resetLists() {
+void resetLists() { // also self-explanatory
   goombaList.clear();
   koopaList.clear();
   blockList.clear();
   powerList.clear();
 }
 
-void loadMap() {//moves the map file to a place where we could code it. 
+void loadMap() { // takes the text from the file and stores it in a matrix
   for (int i = 0; i < 15; i++) {
-    try {
+    try { // code taken from Processing documentation
       line = reader.readLine();
     } catch (IOException e) {
       e.printStackTrace();
@@ -171,7 +168,7 @@ void loadMap() {//moves the map file to a place where we could code it.
 }
 
 //INPUTS!
-void keyPressed() { 
+void keyPressed() { // check if arrow keys are pressed
   if (keyCode == UP && !player.forceStop && !player.jump) {
     player.jump = true;
     player.firstFrame = true;
@@ -184,7 +181,7 @@ void keyPressed() {
   }
 }
 
-public void reset() {
+public void reset() { // reset all variables; essentially a restart without hitting the run button
   start = false;
   resetLists();
   createMap();
@@ -196,7 +193,7 @@ public void reset() {
   cameraOffset = 0;
 }
 
-public void pReset() {
+public void pReset() { // reset most variables, this is on death
   start = false;
   resetLists();
   createMap();
@@ -209,7 +206,7 @@ public void pReset() {
   cameraOffset = 0;
 }
 
-void keyReleased() {
+void keyReleased() { // check if arrow keys have been released
   if (keyCode == UP) {
     player.jump = false;
     player.forceStop = false;
@@ -221,7 +218,7 @@ void keyReleased() {
   }
 }
 
-public void UI() {
+public void UI() { // text and images for user interface
   fill(0);
   text(score, 190, 15);
   pUI.resize(20, 20);
@@ -234,7 +231,7 @@ public void UI() {
 }
 
 void draw() {
-  if (start == false) { //draws the title screen. 
+  if (start == false) { // draws the title screen; text and images
     textFont(font, 40);
     image(open, 0, 0);
     fill(7,113,20);
@@ -278,11 +275,11 @@ void draw() {
       player.reset = false;
       cameraOffset = 0; 
     }
-  } else { //Draws the player, draws the map, drawsenemies. 
+  } else { // Draws the player, draws the map, draws enemies
     background(0, 140, 255);
-    //bg.resize(800, 600);
-    image(bg, 0 - cameraOffset / 4, 0);
+    image(bg, 0 - cameraOffset / 4, 0); // drwa background image
     fill(255);
+    // update all sprites
     player.update();
     for (Coin coin : coinList) {
       coin.update();
@@ -293,6 +290,7 @@ void draw() {
     for (Koopa koopa : koopaList) {
       koopa.update();
     }
+    // draw all sprites
     for (Coin coin : coinList) {
       coin.disp();
     }
@@ -312,16 +310,17 @@ void draw() {
     flagpole.disp();
     player.disp();
     UI();
-    if(player.rect.y > height + 200){
+    
+    if (player.rect.y > height + 200) { // if the player falls below the map, kill them
       player.dead = true;
     }
-    if (player.lives <= 0) {
+    if (player.lives <= 0) { // show losing end screen
       image(lose, 0, 0);
-    } else if (flagpole.won == true){
+    } else if (flagpole.won == true) { // show winning end screen
       image(win, 0, 0);
     }
   }
-  if(keyCode == BACKSPACE){
+  if (keyCode == BACKSPACE) { // if backspace was pressed, restart
     reset();
   }
 }
