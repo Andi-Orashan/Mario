@@ -257,7 +257,7 @@ void draw() {
     textSize(35);
     fill(255);
     text("Bob The Electrician", width/2,120);
-    fill(255);
+    fill(0);
     rect(100,300,600,200);
     textSize(20);
     fill(255);
@@ -285,7 +285,9 @@ void draw() {
     image(tBImgs[0][0],320,245);
     textSize(16);
     text("Mushroom and Tall Bob", 455, 260);
+    upArrowKey.resize(38,38);
     image(upArrowKey,130,320);
+    
     
     if (keyCode == ENTER || player.reset) {
       start = true;
