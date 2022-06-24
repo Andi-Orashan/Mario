@@ -1,4 +1,5 @@
 public class Player {
+  
   public PRect rect;
   public PVector acc, vel; 
   public float fric, grav; //things moving against the players movement. 
@@ -11,6 +12,7 @@ public class Player {
   public boolean inv = false, reset = false, deadJump = false;
   public int coin = 0;
   int timer = 0;
+  
   public Player() {
     rect = new PRect(10, width/2, 24, 24);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
