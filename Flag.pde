@@ -25,6 +25,9 @@ public class Flag {
         level++;
         pReset();
         won = false;
+        if (level == 4) {
+          won = true;
+        }
       }
     }
   }
