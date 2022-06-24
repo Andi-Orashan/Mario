@@ -277,7 +277,7 @@ void draw() {
     textSize(35);
     text("Bob The Electrician", width/2,90);
     fill(0);
-    rect(100,300,600,200);
+    rect(100,300,600,250);
     fill(111);
     rect(175,130,450,150);
     fill(0);
@@ -313,7 +313,14 @@ void draw() {
     text("- Press Left Key to go Left", 313,430);
     text("- Press the Up Key To Jump",305,330);
     text("- Press Backspace to Restart Level", 370,480);
-    image(coinIMG,500,320);
+    coinIMG.resize(20,20);
+    image(coinIMG,180,160);
+    fill(0);
+    text("- get 10 coins for extra life",340,170);
+    image(frontPowIMG[2],180,140);
+    text("-extra life",260,150);
+    fill(111);
+    text("Press Delete to Restart Game", width/2, 520);
     
     if (keyCode == ENTER || player.reset) {
       start = true;
