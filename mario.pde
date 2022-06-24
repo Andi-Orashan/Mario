@@ -26,6 +26,9 @@ public PImage coinIMG; // coin picture
 public PImage pUI; // player image for UI
 public PImage coinUI; // coin image for UI
 public PImage peach;
+public PImage upArrowKey;
+public PImage leftArrowKey;
+public PImage rightArrowKey;
 Flag flagpole; // initialize flag object
 public PImage[][] pImgs = new PImage[3][4]; // player sprites 
 public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
@@ -152,8 +155,10 @@ void loadImages() { // self-explanatory
   lose = loadImage("gameOverSprite.png");
   coinIMG = loadImage("coin.png");
   peach = loadImage("Peach.png.png");
+upArrowKey = loadImage("upArrowKey.png");
+leftArrowKey = loadImage("leftArrowKey.png");
+rightArrowKey = loadImage("rightArrowKey.png");
 }
-
 void resetLists() { // also self-explanatory
   goombaList.clear();
   koopaList.clear();
@@ -280,6 +285,8 @@ void draw() {
     image(tBImgs[0][0],320,245);
     textSize(16);
     text("Mushroom and Tall Bob", 455, 260);
+    image(upArrowKey,130,320);
+    
     if (keyCode == ENTER || player.reset) {
       start = true;
       player.reset = false;
