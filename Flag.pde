@@ -12,7 +12,7 @@ public class Flag {
   
   public void disp() { 
     image(flagpoleIMG, rect.x - cameraOffset, rect.y-360);
-    image(flagIMG, rect.x-16 - cameraOffset, (rect.y-345)+flagHeight);
+    image(flagIMG, rect.x - 16 - cameraOffset, (rect.y-345)+flagHeight);
     castle.resize(200,200);
     image(castle, rect.x + 100 -cameraOffset, rect.y-160); //fixed!
     peach.resize(40,40);
