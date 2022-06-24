@@ -15,6 +15,8 @@ public class Flag {
     image(flagIMG, rect.x-16 - cameraOffset, (rect.y-345)+flagHeight);
     castle.resize(200,200);
     image(castle, rect.x + 100 -cameraOffset, rect.y-160); //fixed!
+    peach.resize(40,40);
+    image(peach, rect.x + 180 - cameraOffset, rect.y+55);
     if (player.rect.x >= rect.x) { //drops the flag if you get to it. 
       if (flagHeight <= 300) {
       flagHeight += 3;

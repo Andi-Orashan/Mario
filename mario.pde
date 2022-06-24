@@ -25,6 +25,7 @@ public PImage castle; // castle picture
 public PImage coinIMG; // coin picture
 public PImage pUI; // player image for UI
 public PImage coinUI; // coin image for UI
+public PImage peach;
 Flag flagpole; // initialize flag object
 public PImage[][] pImgs = new PImage[3][4]; // player sprites 
 public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
@@ -142,6 +143,7 @@ void loadImages() { // self-explanatory
   win = loadImage("winScreen.png");
   lose = loadImage("gameOverSprite.png");
   coinIMG = loadImage("coin.png");
+  peach = loadImage("Peach.png.png");
 }
 
 void resetLists() { // also self-explanatory
