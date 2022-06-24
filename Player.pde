@@ -12,7 +12,7 @@ public class Player {
   public int coin = 0;
   int timer = 0;
   public Player() {
-    rect = new PRect(50, width/2, 24, 24);
+    rect = new PRect(10, width/2, 24, 24);
     acc = new PVector(0, 0); vel = new PVector(0, 0);
     grav = 17.4/60; jumpPress = millis(); fric = 0.2;
   }

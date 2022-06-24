@@ -279,7 +279,7 @@ void draw() {
     }
   } else { // Draws the player, draws the map, draws enemies
     background(0, 140, 255);
-    image(bg, 0 - cameraOffset / 4, 0); // drwa background image
+    image(bg, 0 - cameraOffset / (5), 0); // drwa background image
     fill(255);
     // update all sprites
     player.update();
