@@ -29,7 +29,6 @@ public PImage peach;
 public PImage upArrowKey;
 public PImage leftArrowKey;
 public PImage rightArrowKey;
-public PImage backspace;
 Flag flagpole; // initialize flag object
 public PImage[][] pImgs = new PImage[3][4]; // player sprites 
 public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
@@ -159,7 +158,6 @@ void loadImages() { // self-explanatory
 upArrowKey = loadImage("upArrowKey.png");
 leftArrowKey = loadImage("leftArrowKey.png");
 rightArrowKey = loadImage("rightArrowKey.png");
-backspace= loadImage("backspace.png");
 }
 void resetLists() { // also self-explanatory
   goombaList.clear();
@@ -287,9 +285,7 @@ void draw() {
     image(tBImgs[0][0],320,245);
     textSize(16);
     text("Mushroom and Tall Bob", 455, 260);
-    upArrowKey.resize(38,38);
     image(upArrowKey,130,320);
-    
     
     if (keyCode == ENTER || player.reset) {
       start = true;
