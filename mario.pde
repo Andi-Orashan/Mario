@@ -37,7 +37,7 @@ public PImage[] frontPowIMG = new PImage[3]; // beginning screen powerup images
 public PImage[] breakImgs = new PImage[7];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
-public int score = 0;
+public int score = 0, level = 1;
 
 void createMap() { // instantiate objects from map.txt file
   for (int y = 0; y < 15; y++) {
@@ -66,7 +66,6 @@ void setup() {
   textAlign(CENTER, CENTER);
   size(800,600);
   //loads maps and pictures. 
-  reader = createReader("map.txt");
   loadImages();
   loadMap();
   createMap();
@@ -162,6 +161,8 @@ void resetLists() { // also self-explanatory
 }
 
 void loadMap() { // takes the text from the file and stores it in a matrix
+  reader = createReader("map"+level+".txt");
+  map.clear();
   for (int i = 0; i < 15; i++) {
     try { // code taken from Processing documentation
       line = reader.readLine();
@@ -194,6 +195,7 @@ void keyPressed() { // check if arrow keys are pressed
 public void reset() { // reset all variables; essentially a restart without hitting the run button
   start = false;
   resetLists();
+  loadMap();
   createMap();
   tempLives = player.lives;
   player = new Player();
@@ -206,6 +208,7 @@ public void reset() { // reset all variables; essentially a restart without hitt
 public void pReset() { // reset most variables, this is on death
   start = false;
   resetLists();
+  loadMap();
   createMap();
   tempLives = player.lives;
   tempCoins = player.coin;
@@ -237,6 +240,7 @@ public void UI() { // text and images for user interface
   coinUI.resize(20, 20);
   image(coinUI, 272, 5);
   text(player.coin, 300, 15);
+  text("Level: "+level, 375, 15);
   fill(255);
 }
 

@@ -19,11 +19,13 @@ public class Flag {
     image(peach, rect.x + 180 - cameraOffset, rect.y);
     if (player.rect.x >= rect.x) { //drops the flag if you get to it. 
       if (flagHeight <= 300) {
-      flagHeight += 3;
-    } else {
-      won = true;
+        flagHeight += 3;
+      } else {
+        won = true;
+        level++;
+        pReset();
+        won = false;
+      }
     }
-    }
-    
   }
 }
