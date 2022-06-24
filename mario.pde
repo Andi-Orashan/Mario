@@ -283,6 +283,7 @@ void draw() {
     fill(0);
     textSize(18);
     text("Enemies -",width/3.5 - 5, 190);
+    text("< Jump on Enemies to Kill", 470, 190);
     image(goombaIMG, 310,180);
     image(koopaIMG, 290,180);
     shell.resize(20, 20);
