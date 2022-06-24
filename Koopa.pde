@@ -66,7 +66,7 @@ public class Koopa {
   }
   public boolean blockRightCollision() {// have you hit a block on your right side
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right + velX > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right + velX > block.rect.left - 0.1 && rect.left < block.rect.centerx && rect.top < block.rect.bottom - 1 && block.draw) {
         if (!dead) {
           velX = 2;
         } else {
@@ -80,7 +80,7 @@ public class Koopa {
   
   public boolean blockLeftCollision() { // have you hit a block on your left side
     for (Block block : blockList) {
-      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + velX < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1) {
+      if (rect.bottom > block.rect.top + 1 && rect.right > block.rect.centerx && rect.left + velX < block.rect.right + 0.1 && rect.top < block.rect.bottom - 1 && block.draw) {
         if (!dead) {
           velX = -2;
         } else {
@@ -120,7 +120,7 @@ public class Koopa {
   
   public boolean blockTopCollision() { // have you collided with the top of the block?
     for (Block block : blockList) {
-      if (rect.bottom + velY > block.rect.top && rect.right > block.rect.left + 2 && rect.left < block.rect.right - 2 && rect.top < block.rect.top - TILESIZE / 8) {
+      if (rect.bottom + velY > block.rect.top && rect.right > block.rect.left + 2 && rect.left < block.rect.right - 2 && rect.top < block.rect.top - TILESIZE / 8 && block.draw) {
         velY = 0;
         if (rect.bottom > block.rect.top) {
           rect.top = block.rect.top - rect.ySize; // move koopa to top of block
