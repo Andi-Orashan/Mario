@@ -160,6 +160,7 @@ upArrowKey = loadImage("upArrowKey.png");
 leftArrowKey = loadImage("leftArrowKey.png");
 rightArrowKey = loadImage("rightArrowKey.png");
 backspace= loadImage("backspace.png");
+
 }
 void resetLists() { // also self-explanatory
   goombaList.clear();
@@ -295,6 +296,12 @@ void draw() {
     image(leftArrowKey,130,410);
     backspace.resize(400,160);
     image(backspace,125,460);
+    fill(111);
+    text("- Press Right Key to go Right", 320,380);
+    text("- Press Left Key to go Left", 313,430);
+    text("- Press the Up Key To Jump",305,330);
+    text("- Press Backspace to Restart", 340,480);
+    
     
     if (keyCode == ENTER || player.reset) {
       start = true;
