@@ -155,9 +155,9 @@ void loadImages() { // self-explanatory
   lose = loadImage("gameOverSprite.png");
   coinIMG = loadImage("coin.png");
   peach = loadImage("Peach.png.png");
-upArrowKey = loadImage("up arrow key.png");
-leftArrowKey = loadImage("left arrow key.png");
-rightArrowKey = loadImage("right arrow key.png");
+upArrowKey = loadImage("upArrowKey.png");
+leftArrowKey = loadImage("leftArrowKey.png");
+rightArrowKey = loadImage("rightArrowKey.png");
 }
 void resetLists() { // also self-explanatory
   goombaList.clear();
@@ -285,7 +285,7 @@ void draw() {
     image(tBImgs[0][0],320,245);
     textSize(16);
     text("Mushroom and Tall Bob", 455, 260);
-    
+    image(upArrowKey,130,320);
     
     if (keyCode == ENTER || player.reset) {
       start = true;
