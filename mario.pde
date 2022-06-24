@@ -45,21 +45,23 @@ PFont font; // text font
 public int score = 0, level = 1;
 
 void createMap() { // instantiate objects from map.txt file
-  for (int y = 0; y < 15; y++) {
-    for (int x = 0; x < 246; x++) { // places tiles
-      if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
-        blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
-      }
-      if (map.get(y).charAt(x) == 'F') {
-        flagpole = (new Flag(x*40, y*40));
-        flagpole.img.resize(40, 400);
-        flagIMG.resize(40,40);
-      }
-      if (map.get(y).charAt(x) == 'g') {
-        goombaList.add(new Goomba(x*40, y*40));
-      }
-      if (map.get(y).charAt(x) == 'k') {
-        koopaList.add(new Koopa(x*40, y*40));
+  if (level <= 3) {
+    for (int y = 0; y < 15; y++) {
+      for (int x = 0; x < 246; x++) { // places tiles
+        if (map.get(y).charAt(x) != ' ' && map.get(y).charAt(x) != 'F' && map.get(y).charAt(x) != 'g' && map.get(y).charAt(x) != 'k') {
+          blockList.add(new Block(x*40, y*40, map.get(y).charAt(x)));
+        }
+        if (map.get(y).charAt(x) == 'F') {
+          flagpole = (new Flag(x*40, y*40));
+          flagpole.img.resize(40, 400);
+          flagIMG.resize(40,40);
+        }
+        if (map.get(y).charAt(x) == 'g') {
+          goombaList.add(new Goomba(x*40, y*40));
+        }
+        if (map.get(y).charAt(x) == 'k') {
+          koopaList.add(new Koopa(x*40, y*40));
+        }
       }
     }
   }
@@ -170,19 +172,21 @@ void resetLists() { // also self-explanatory
 }
 
 void loadMap() { // takes the text from the file and stores it in a matrix
-  reader = createReader("map"+level+".txt");
-  map.clear();
-  for (int i = 0; i < 15; i++) {
-    try { // code taken from Processing documentation
-      line = reader.readLine();
-    } catch (IOException e) {
-      e.printStackTrace();
-      line = null;
-    }
-    if (line == null) {
-      exit();
-    } else {
-      map.add(line);
+  if (level <= 3) {
+    reader = createReader("map"+level+".txt");
+    map.clear();
+    for (int i = 0; i < 15; i++) {
+      try { // code taken from Processing documentation
+        line = reader.readLine();
+      } catch (IOException e) {
+        e.printStackTrace();
+        line = null;
+      }
+      if (line == null) {
+        exit();
+      } else {
+        map.add(line);
+      }
     }
   }
 }
@@ -228,6 +232,20 @@ public void pReset() { // reset most variables, this is on death
   cameraOffset = 0;
 }
 
+public void bReset() { // reset most variables, this is on death
+  start = false;
+  resetLists();
+  loadMap();
+  createMap();
+  tempLives = player.lives - 1;
+  tempCoins = player.coin;
+  player = new Player();
+  player.lives = tempLives + 1;
+  player.coin = tempCoins;
+  player.reset = true;
+  cameraOffset = 0;
+}
+
 void keyReleased() { // check if arrow keys have been released
   if (keyCode == UP) {
     player.jump = false;
@@ -259,32 +277,33 @@ void draw() {
     image(open, 0, 0);
     fill(255);
     textSize(22);
-    text("Press Enter to Play", width/2, 150);
+    text("Press Enter to Play", width/2, 120);
     textSize(35);
-    text("Bob The Electrician", width/2,120);
+    text("Bob The Electrician", width/2,90);
     fill(0);
     rect(100,300,600,200);
     fill(111);
-    rect(175,175,450,110);
+    rect(175,130,450,150);
     fill(0);
     textSize(18);
     text("Enemies -",width/3.5 - 5, 190);
+    text("< Jump on Enemies to Kill", 470, 190);
     image(goombaIMG, 310,180);
     image(koopaIMG, 290,180);
     shell.resize(20, 20);
     image(shell, 270,180);
     frontPowIMG[1].resize(20,20);
-    image(frontPowIMG[1], 289,210);
+    image(frontPowIMG[1], 180,210);
     mImgs[0][2].resize(20,40);
-    image(mImgs[0][2],320, 205);
+    image(mImgs[0][2],210, 205);
     textSize(16);
-    text("Metal Mushroom and Metal Bob",489,220);
+    text("= 10 Second Invincibility",360,220);
     frontPowIMG[0].resize(20,20);
-    image(frontPowIMG[0], 289, 250);
+    image(frontPowIMG[0], 180, 250);
     tBImgs[0][0].resize(20,40);
-    image(tBImgs[0][0],320,245);
+    image(tBImgs[0][0],210,245);
     textSize(16);
-    text("Mushroom and Tall Bob", 455, 260);
+    text("- makes Bob Tall", 320, 260);
     upArrowKey.resize(38,38);
     image(upArrowKey,130,310);
     rightArrowKey.resize(38,38);
@@ -297,7 +316,7 @@ void draw() {
     text("- Press Right Key to go Right", 320,380);
     text("- Press Left Key to go Left", 313,430);
     text("- Press the Up Key To Jump",305,330);
-    text("- Press Backspace to Restart", 340,480);
+    text("- Press Backspace to Restart Level", 370,480);
     image(coinIMG,500,320);
     
     if (keyCode == ENTER || player.reset) {
@@ -306,58 +325,62 @@ void draw() {
       cameraOffset = 0; 
     }
   } else { // Draws the player, draws the map, draws enemies
-    background(0, 140, 255);
-    if (level == 1) {
-      image(bg, 0 - cameraOffset / (6), 0); // draw background image
-    } else if (level > 1) {
-      image(bgNew, 0 - cameraOffset / 6, 0);
-    }
-    fill(255);
-    // update all sprites
-    player.update();
-    for (Coin coin : coinList) {
-      coin.update();
-    }
-    for (Goomba goomba : goombaList) {
-      goomba.update();
-    }
-    for (Koopa koopa : koopaList) {
-      koopa.update();
-    }
-    // draw all sprites
-    for (Coin coin : coinList) {
-      coin.disp();
-    }
-    for (Block block : blockList) {
-      block.img.resize(TILESIZE, TILESIZE);
-      block.disp();
-    }
-    for (Goomba goomba : goombaList) {
-      goomba.disp();
-    }
-    for (Koopa koopa : koopaList) {
-      koopa.disp();
-    }
-    for (PowerUp power : powerList) {
-      power.disp();
-    }
-    flagpole.disp();
-    player.disp();
-    UI();
-    
-    if (player.rect.y > height + 200) { // if the player falls below the map, kill them
-      player.dead = true;
-    }
-    if (player.lives <= 0) { // show losing end screen
-      image(lose, 0, 0);
-    } else if (flagpole.won == true) { // show winning end screen
+    if (level <= 3) {
+      background(0, 140, 255);
+      if (level == 1) {
+        image(bg, 0 - cameraOffset / (6), 0); // draw background image
+      } else if (level > 1) {
+        image(bgNew, 0 - cameraOffset / 6, 0);
+      }
+      fill(255);
+      // update all sprites
+      player.update();
+      for (Coin coin : coinList) {
+        coin.update();
+      }
+      for (Goomba goomba : goombaList) {
+        goomba.update();
+      }
+      for (Koopa koopa : koopaList) {
+        koopa.update();
+      }
+      // draw all sprites
+      for (Coin coin : coinList) {
+        coin.disp();
+      }
+      for (Block block : blockList) {
+        block.img.resize(TILESIZE, TILESIZE);
+        block.disp();
+      }
+      for (Goomba goomba : goombaList) {
+        goomba.disp();
+      }
+      for (Koopa koopa : koopaList) {
+        koopa.disp();
+      }
+      for (PowerUp power : powerList) {
+        power.disp();
+      }
+      flagpole.disp();
+      player.disp();
+      UI();
+      
+      if (player.rect.y > height + 200) { // if the player falls below the map, kill them
+        player.dead = true;
+      }
+      if (player.lives <= 0) { // show losing end screen
+        image(lose, 0, 0);
+      } else if (flagpole.won == true) { // show winning end screen
+        image(win, 0, 0);
+      }
+    } else {
       image(win, 0, 0);
     }
-  }
-  if (keyCode == BACKSPACE) { // if backspace was pressed, restart
-    reset();
-  } else if (keyCode == DELETE) {
-    level = 1;
-    reset();
+    if (keyCode == BACKSPACE) { // if backspace was pressed, restart
+      bReset();
+    } else if (keyCode == DELETE) {
+      level = 1;
+      reset();
+    }
   }
 }
