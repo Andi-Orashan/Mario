@@ -364,5 +364,8 @@ void draw() {
   }
   if (keyCode == BACKSPACE) { // if backspace was pressed, restart
     reset();
+  } else if (keyCode == DELETE) {
+    level = 1;
+    reset();
   }
 }
