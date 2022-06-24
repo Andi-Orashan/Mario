@@ -14,6 +14,7 @@ BufferedReader reader; //class that reads map.txt
 Player player = new Player(); //creates the player. 
 public PImage open; //The title screen picture
 public PImage bg; //background image
+public PImage bgNew;
 public PImage lose; //lost image
 public PImage win; //win image
 public PImage flagpoleIMG; //flagpole picture
@@ -78,6 +79,7 @@ void setup() {
 void loadImages() { // self-explanatory
   open = loadImage("image.png");
   bg = loadImage("background.png");
+  bgNew = loadImage("bgNoBush.png");
   blockImgs[0] = loadImage("crackedTile.png");
   blockImgs[1] = loadImage("bigTile.png");
   blockImgs[2] = loadImage("brickTile.png");
@@ -158,7 +160,7 @@ void loadImages() { // self-explanatory
 upArrowKey = loadImage("upArrowKey.png");
 leftArrowKey = loadImage("leftArrowKey.png");
 rightArrowKey = loadImage("rightArrowKey.png");
-backspace= loadImage("backspace.png");
+backspace = loadImage("backspace.png");
 }
 void resetLists() { // also self-explanatory
   goombaList.clear();
@@ -307,7 +309,11 @@ void draw() {
     }
   } else { // Draws the player, draws the map, draws enemies
     background(0, 140, 255);
-    image(bg, 0 - cameraOffset / (5), 0); // drwa background image
+    if (level == 1) {
+      image(bg, 0 - cameraOffset / (6), 0); // draw background image
+    } else if (level > 1) {
+      image(bgNew, 0 - cameraOffset / 6, 0);
+    }
     fill(255);
     // update all sprites
     player.update();
