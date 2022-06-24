@@ -288,7 +288,7 @@ public class Player {
       }
     }
     
-    if (dieEnd && !big) { // after death animation, reset and remove a life
+    if (dieEnd && !big && !flagpole.won) { // after death animation, reset and remove a life
       lives -= 1;
       dead = false;
       dieEnd = false;
