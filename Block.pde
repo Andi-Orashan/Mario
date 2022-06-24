@@ -2,9 +2,11 @@ public class Block {
   PRect rect;
   char type;
   PImage img;
+  int frame, frameDelay;
   boolean full, draw;
   // which block is this? and lets grab its sprites. Hitboxes are somewhereelse.   
   public Block(int x, int y, char type) {
+    frame = 0; frameDelay = 0;
     rect = new PRect(x, y, TILESIZE, TILESIZE);
     this.type = type;
     draw = true;
@@ -35,6 +37,13 @@ public class Block {
       if (full == false && type == 'M') {
         img = blockImgs[3];
       }
+    } else {
+      if (frameDelay + 200 <= millis()) {
+        frame += 1;
+        frame = min(frame, 6);
+      }
+      breakImgs[frame].resize(40, 40);
+      image(breakImgs[frame], rect.x - cameraOffset, rect.y);
     }
   }
 }

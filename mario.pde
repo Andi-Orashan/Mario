@@ -34,6 +34,7 @@ public PImage[] gImgs = new PImage[5]; // goomba images
 public PImage[][] kImgs = new PImage[2][5]; // koopa images
 public PImage[] powIMG = new PImage[3]; // powerup images
 public PImage[] frontPowIMG = new PImage[3]; // beginning screen powerup images
+public PImage[] breakImgs = new PImage[7];
 public boolean start = false; //Whether or not to show start image
 PFont font; // text font
 public int score = 0;
@@ -125,6 +126,13 @@ void loadImages() { // self-explanatory
   kImgs[0][2] = loadImage("koopa-flip-anime-3.png");
   kImgs[0][3] = loadImage("koopa-flip-anime-4.png");
   kImgs[0][4] = loadImage("koopa-flip-anime-5.png");
+  breakImgs[0] = loadImage("brickTile-break 1.png");
+  breakImgs[1] = loadImage("brickTile-break 2.png");
+  breakImgs[2] = loadImage("brickTile-break 3.png");
+  breakImgs[3] = loadImage("brickTile-break 4.png");
+  breakImgs[4] = loadImage("brickTile-break 5.png");
+  breakImgs[5] = loadImage("brickTile-break 6.png");
+  breakImgs[6] = loadImage("empty.png");
   flagpoleIMG = loadImage("flagpole.png");
   flagIMG = loadImage("flag.png");
   coinIMG = loadImage("coin.png");

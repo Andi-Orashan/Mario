@@ -5,9 +5,9 @@ public class Player {
   public int jumpPress, lives=3;
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   public int dir = 0, frame = 0, framePause = millis(), iFrames;
-  public boolean metal = false;//lorenzo
+  public boolean metal = false;
   public boolean dead = false, dieEnd = false;
-  public boolean big = false; //end
+  public boolean big = false;
   public boolean inv = false, reset = false, deadJump = false;
   public int coin = 0;
   int timer = 0;
@@ -234,6 +234,7 @@ public class Player {
         }
         if (block.type == 'B' && (big || metal)) {
           block.draw = false;
+          block.frameDelay = millis() - 100;
         }
         return true;
       }
