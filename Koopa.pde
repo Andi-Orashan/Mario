@@ -95,6 +95,7 @@ public class Koopa {
   public boolean playerLeftCollision() { // check if the left side collided with the player
       if (rect.bottom > player.rect.top + 30 && rect.right > player.rect.centerx && rect.left + velX < player.rect.right + 0.1 && rect.top + 25 < player.rect.bottom - 1) {
         if (player.metal == true) {
+          coinList.add(new Coin(rect.x, rect.y)); // spawn a coin
           dead = true; // if player has metal powerup, die
         } else {
           player.dead = true; // otherwise, kill the player
@@ -107,6 +108,7 @@ public class Koopa {
   public boolean playerRightCollision() { // do the same thing, except for the right side
       if (rect.bottom > player.rect.top + 30 && rect.right > player.rect.centerx && rect.right + velX < player.rect.left + 0.1 && rect.top + 25 < player.rect.bottom - 1) {
         if (player.metal == true) {
+          coinList.add(new Coin(rect.x, rect.y)); // spawn a coin
           dead = true;
         } else {
           player.dead = true;
