@@ -259,13 +259,13 @@ void draw() {
     image(open, 0, 0);
     fill(255);
     textSize(22);
-    text("Press Enter to Play", width/2, 150);
+    text("Press Enter to Play", width/2, 120);
     textSize(35);
-    text("Bob The Electrician", width/2,120);
+    text("Bob The Electrician", width/2,90);
     fill(0);
     rect(100,300,600,200);
     fill(111);
-    rect(175,175,450,110);
+    rect(175,130,450,150);
     fill(0);
     textSize(18);
     text("Enemies -",width/3.5 - 5, 190);
@@ -275,17 +275,17 @@ void draw() {
     shell.resize(20, 20);
     image(shell, 270,180);
     frontPowIMG[1].resize(20,20);
-    image(frontPowIMG[1], 289,210);
+    image(frontPowIMG[1], 180,210);
     mImgs[0][2].resize(20,40);
-    image(mImgs[0][2],320, 205);
+    image(mImgs[0][2],210, 205);
     textSize(16);
-    text("Metal Mushroom and Metal Bob",489,220);
+    text("= 10 Second Invincibility",360,220);
     frontPowIMG[0].resize(20,20);
-    image(frontPowIMG[0], 289, 250);
+    image(frontPowIMG[0], 180, 250);
     tBImgs[0][0].resize(20,40);
-    image(tBImgs[0][0],320,245);
+    image(tBImgs[0][0],210,245);
     textSize(16);
-    text("Mushroom and Tall Bob", 455, 260);
+    text("- makes Bob Tall", 320, 260);
     upArrowKey.resize(38,38);
     image(upArrowKey,130,310);
     rightArrowKey.resize(38,38);
@@ -298,7 +298,7 @@ void draw() {
     text("- Press Right Key to go Right", 320,380);
     text("- Press Left Key to go Left", 313,430);
     text("- Press the Up Key To Jump",305,330);
-    text("- Press Backspace to Restart", 340,480);
+    text("- Press Backspace to Restart Level", 370,480);
     image(coinIMG,500,320);
     
     if (keyCode == ENTER || player.reset) {
