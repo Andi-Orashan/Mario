@@ -6,9 +6,9 @@ public class Player {
   public boolean jump = false, forceStop = false, firstFrame = false, fall = true, goRight = false, goLeft = false;
   public int dir = 0, frame = 0, framePause = millis(), iFrames;
   public boolean metal = false;//lorenzo
-  public boolean dead = false;
+  public boolean dead = false, dieEnd = false;
   public boolean big = false; //end
-  public boolean inv = false, reset = false;
+  public boolean inv = false, reset = false, deadJump = false;
   public int coin = 0;
   int timer = 0;
   public Player() {
@@ -29,158 +29,156 @@ public class Player {
       coin -=10;
       lives++;
     }
-    if (dead == true && big == false && inv == false) {// quick are you dead? check
-      //Put end screen. 
-      lives--;
-      dead = false;
-      inv = true;
-      // print(dead); //debug
-    } else if (dead == true && big == true && inv == false) { // you get hit in big mode, you 
+    if (dead == true && big == true && inv == false) { // you get hit in big mode, you 
       dead = false;
       big = false;
     }
     
-    if (!big && !metal) {
-      if (!jump && !fall) {
-        rect.ySize = 30;
-        rect.xSize = 24;
-      }
-      if (vel.x > 0.1 && (!jump && !fall)) {
-        pImgs[0][frame].resize(36, 36); //facing right walk
-        dir = 0;
-        image(pImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
-        if (framePause + 50 <= millis()) {
-          frame += 1;
-          frame %= 4;
-          framePause = millis();
+    if (!dead || big) {
+      if (!big && !metal) {
+        if (!jump && !fall) {
+          rect.ySize = 30;
+          rect.xSize = 24;
         }
-      } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
-        pImgs[1][frame].resize(36, 36);
-        image(pImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
-        dir = 1;
-        if (framePause + 50 <= millis()) {
-          frame += 1;
-          frame %= 4;
-          framePause = millis();
+        if (vel.x > 0.1 && (!jump && !fall)) {
+          pImgs[0][frame].resize(36, 36); //facing right walk
+          dir = 0;
+          image(pImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
+          if (framePause + 50 <= millis()) {
+            frame += 1;
+            frame %= 4;
+            framePause = millis();
+          }
+        } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
+          pImgs[1][frame].resize(36, 36);
+          image(pImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
+          dir = 1;
+          if (framePause + 50 <= millis()) {
+            frame += 1;
+            frame %= 4;
+            framePause = millis();
+          }
+        } else if (!jump && !fall) {// no movement catch all
+          if (dir == 0) {
+            pImgs[0][1].resize(36, 36);
+            image(pImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
+          } else if (dir == 1) {
+            pImgs[0][1].resize(36, 36);
+            image(pImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
+          }
         }
-      } else if (!jump && !fall) {// no movement catch all
-        if (dir == 0) {
-          pImgs[0][1].resize(36, 36);
-          image(pImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
-        } else if (dir == 1) {
-          pImgs[0][1].resize(36, 36);
-          image(pImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
-        }
-      }
-      if (jump || fall) { //Are you jumping or falling to the right
-        if (vel.x >= 0) {
-          //EXPERIMENTAL TO CHANGE SPRITES!
-          if (metal == true) {
-            
-          } else if (big == true) {
+        if (jump || fall) { //Are you jumping or falling to the right
+          if (vel.x >= 0) {
+            //EXPERIMENTAL TO CHANGE SPRITES!
+            if (metal == true) {
+              
+            } else if (big == true) {
+              
+            } else {
+              pImgs[2][1].resize(36, 36);
+              image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
+            }
             
           } else {
-            pImgs[2][1].resize(36, 36);
-            image(pImgs[2][1], rect.left - 6 - cameraOffset, rect.top);
+            pImgs[2][0].resize(36, 36);
+            image(pImgs[2][0], rect.left - 6 - cameraOffset, rect.top);
           }
-          
-        } else {
-          pImgs[2][0].resize(36, 36);
-          image(pImgs[2][0], rect.left - 6 - cameraOffset, rect.top);
         }
       }
+      
+      if (big) {
+        if (!jump && !fall) {
+          rect.ySize = 58;
+          rect.xSize = 24;
+        }
+        if (vel.x > 0.1 && (!jump && !fall)) {
+          tBImgs[0][frame].resize(36, 72); //facing right walk
+          dir = 0;
+          image(tBImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
+          if (framePause + 50 <= millis()) {
+            frame += 1;
+            frame %= 4;
+            framePause = millis();
+          }
+        } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
+          tBImgs[1][frame].resize(36, 72);
+          image(tBImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
+          dir = 1;
+          if (framePause + 50 <= millis()) {
+            frame += 1;
+            frame %= 4;
+            framePause = millis();
+          }
+        } else if (!jump && !fall) {// no movement catch all
+          if (dir == 0) {
+            tBImgs[0][1].resize(36, 72);
+            image(tBImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
+          } else if (dir == 1) {
+            tBImgs[0][1].resize(36, 72);
+            image(tBImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
+          }
+        }
+        if (jump || fall) { //Are you jumping or falling to the right
+          rect.xSize = 24;
+          rect.ySize = 48;
+          if (vel.x >= 0) {
+            tBImgs[2][0].resize(72, 72);
+            image(tBImgs[2][0], rect.left - 24 - cameraOffset, rect.top - 16); 
+          } else {
+            tBImgs[2][1].resize(72, 72);
+            image(tBImgs[2][1], rect.left - 24 - cameraOffset, rect.top - 16);
+          }
+        }
+      }
+      
+      if (metal) {
+        if (!jump && !fall) {
+          rect.ySize = 58;
+          rect.xSize = 24;
+        }
+        if (vel.x > 0.1 && (!jump && !fall)) {
+          mImgs[0][frame].resize(36, 72); //facing right walk
+          dir = 0;
+          image(mImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
+          if (framePause + 50 <= millis()) {
+            frame += 1;
+            frame %= 4;
+            framePause = millis();
+          }
+        } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
+          mImgs[1][frame].resize(36, 72);
+          image(mImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
+          dir = 1;
+          if (framePause + 50 <= millis()) {
+            frame += 1;
+            frame %= 4;
+            framePause = millis();
+          }
+        } else if (!jump && !fall) {// no movement catch all
+          if (dir == 0) {
+            mImgs[0][1].resize(36, 72);
+            image(mImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
+          } else if (dir == 1) {
+            mImgs[0][1].resize(36, 72);
+            image(mImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
+          }
+        }
+        if (jump || fall) { //Are you jumping or falling to the right
+          rect.xSize = 24;
+          rect.ySize = 48;
+          if (vel.x >= 0) {
+            mImgs[2][0].resize(72, 72);
+            image(mImgs[2][0], rect.left - 24 - cameraOffset, rect.top - 16); 
+          } else {
+            mImgs[2][1].resize(72, 72);
+            image(mImgs[2][1], rect.left - 24 - cameraOffset, rect.top - 16);
+          }
+        }
+      }
+    } else {
+      pImgs[2][2].resize(36, 36);
+      image(pImgs[2][2], rect.left - 6 - cameraOffset, rect.top);
     }
-    
-    if (big) {
-      if (!jump && !fall) {
-        rect.ySize = 58;
-        rect.xSize = 24;
-      }
-      if (vel.x > 0.1 && (!jump && !fall)) {
-        tBImgs[0][frame].resize(36, 72); //facing right walk
-        dir = 0;
-        image(tBImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
-        if (framePause + 50 <= millis()) {
-          frame += 1;
-          frame %= 4;
-          framePause = millis();
-        }
-      } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
-        tBImgs[1][frame].resize(36, 72);
-        image(tBImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
-        dir = 1;
-        if (framePause + 50 <= millis()) {
-          frame += 1;
-          frame %= 4;
-          framePause = millis();
-        }
-      } else if (!jump && !fall) {// no movement catch all
-        if (dir == 0) {
-          tBImgs[0][1].resize(36, 72);
-          image(tBImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
-        } else if (dir == 1) {
-          tBImgs[0][1].resize(36, 72);
-          image(tBImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
-        }
-      }
-      if (jump || fall) { //Are you jumping or falling to the right
-        rect.xSize = 24;
-        rect.ySize = 48;
-        if (vel.x >= 0) {
-          tBImgs[2][0].resize(72, 72);
-          image(tBImgs[2][0], rect.left - 24 - cameraOffset, rect.top - 16); 
-        } else {
-          tBImgs[2][1].resize(72, 72);
-          image(tBImgs[2][1], rect.left - 24 - cameraOffset, rect.top - 16);
-        }
-      }
-    }
-    
-    if (metal) {
-      if (!jump && !fall) {
-        rect.ySize = 58;
-        rect.xSize = 24;
-      }
-      if (vel.x > 0.1 && (!jump && !fall)) {
-        mImgs[0][frame].resize(36, 72); //facing right walk
-        dir = 0;
-        image(mImgs[0][frame], rect.left - 6 - cameraOffset, rect.top);
-        if (framePause + 50 <= millis()) {
-          frame += 1;
-          frame %= 4;
-          framePause = millis();
-        }
-      } else if (vel.x < -0.1 && (!jump && !fall)) { //facing left walk
-        mImgs[1][frame].resize(36, 72);
-        image(mImgs[1][frame], rect.left - 6 - cameraOffset, rect.top);
-        dir = 1;
-        if (framePause + 50 <= millis()) {
-          frame += 1;
-          frame %= 4;
-          framePause = millis();
-        }
-      } else if (!jump && !fall) {// no movement catch all
-        if (dir == 0) {
-          mImgs[0][1].resize(36, 72);
-          image(mImgs[0][1], rect.left - 6 - cameraOffset, rect.top);
-        } else if (dir == 1) {
-          mImgs[0][1].resize(36, 72);
-          image(mImgs[1][1], rect.left - 6 - cameraOffset, rect.top);
-        }
-      }
-      if (jump || fall) { //Are you jumping or falling to the right
-        rect.xSize = 24;
-        rect.ySize = 48;
-        if (vel.x >= 0) {
-          mImgs[2][0].resize(72, 72);
-          image(mImgs[2][0], rect.left - 24 - cameraOffset, rect.top - 16); 
-        } else {
-          mImgs[2][1].resize(72, 72);
-          image(mImgs[2][1], rect.left - 24 - cameraOffset, rect.top - 16);
-        }
-      }
-    }
-    
   }
   
   public void jump() {
@@ -278,12 +276,27 @@ public class Player {
   }
   
   public void update() { // if the player is jumping and not falling, they can run the jump sequence. 
-    if (jump && !fall) {
+    if (jump && !fall && !deadJump) {
       jump();
     }
     
     if (dead && !big) {
+      if (!deadJump) {
+        deadJump = true;
+        vel.x = 0;
+        vel.y = -6;
+      }
+      vel.y += grav;
+      rect.top += vel.y;
+      if (rect.bottom > height + 100) {
+        dieEnd = true;
+      }
+    }
+    
+    if (dieEnd && !big) {
       lives -= 1;
+      dead = false;
+      dieEnd = false;
       pReset();
     }
     
@@ -295,17 +308,22 @@ public class Player {
       cameraOffset += (rect.right - cameraOffset) - (width * .75);
     }
     //wraps everything into one function. 
-    move();
-    blockBottomCollision();
-    blockTopCollision();
-    gravity(); // always update gravity
+    if (!deadJump) {
+      move();
+      blockBottomCollision();
+      blockTopCollision();
+      gravity(); // always update gravity
+    }
+   
     
     //does more movement. 
     if (rect.left - cameraOffset + vel.x > 0) {
       rect.left += vel.x;
     }
-    if (!blockTopCollision()) {
-      rect.top += vel.y;
+    if (!deadJump) {
+      if (!blockTopCollision()) {
+        rect.top += vel.y;
+      }
     }
     //one last function!
     rect.update();

@@ -13,8 +13,9 @@ public class Goomba {
   }
   
   public void squash() {
-    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 6 && player.rect.right > rect.left && player.rect.left < rect.right && !dead) {
+    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 6 && player.rect.right > rect.left && player.rect.left < rect.right && !dead && !player.dead) {
       dead = true;
+      coinList.add(new Coin(rect.x, rect.y));
       player.vel.y = min(-4, player.vel.y * 1.5);
       score+=100;
     }
@@ -65,8 +66,9 @@ public class Goomba {
   public void shellLeftCollision() {
     for (Koopa koopa: koopaList) {
       if ((rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.left + velX < koopa.rect.right + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false)) {
-        if (koopa.dead == true) {
+        if (koopa.dead == true && koopa.velX != 0) {
           dead = true;
+          coinList.add(new Coin(rect.x, rect.y));
           score+=150;
         }
       }
@@ -75,8 +77,9 @@ public class Goomba {
   public void shellRightCollision() {
     for (Koopa koopa: koopaList) {
       if (rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.right + velX < koopa.rect.left + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false) {
-        if (koopa.dead == true) {
+        if (koopa.dead == true && koopa.velX != 0) {
           dead = true;
+          coinList.add(new Coin(rect.x, rect.y));
           score+=150;
         }
       }

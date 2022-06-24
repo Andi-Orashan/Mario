@@ -13,8 +13,9 @@ public class Koopa {
   }
   
   public void squash() {
-    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 6 && player.rect.right > rect.left - 3 && player.rect.left < rect.right + 3 && !dead) {
+    if (player.rect.bottom > rect.top && player.rect.bottom < rect.top + 6 && player.rect.right > rect.left - 3 && player.rect.left < rect.right + 3 && !dead && !player.dead) {
       dead = true;
+      coinList.add(new Coin(rect.x, rect.y));
       player.vel.y = min(-4, player.vel.y * 1.5);
       velX = 0;
       wait = true;
@@ -33,8 +34,12 @@ public class Koopa {
   public void shellLeftCollision() {
     for (Koopa koopa: koopaList) {
       if ((rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.left + velX < koopa.rect.right + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false)) {
-        if (koopa.dead == true) {
+        if (koopa.dead == true && koopa.velX != 0) {
           dead = true;
+          velX = 0;
+          coinList.add(new Coin(rect.x, rect.y));
+          wait = true;
+          waitCooldown = millis();
           score+= 200;
         }
       }
@@ -43,8 +48,12 @@ public class Koopa {
   public void shellRightCollision() {
     for (Koopa koopa: koopaList) {
       if (rect.bottom > koopa.rect.top + 1 && rect.right > koopa.rect.centerx && rect.right + velX < koopa.rect.left + 0.1 && rect.top < koopa.rect.bottom - 1 && dead == false) {
-        if (koopa.dead == true) {
+        if (koopa.dead == true && koopa.velX != 0) {
           dead = true;
+          velX = 0;
+          coinList.add(new Coin(rect.x, rect.y));
+          wait = true;
+          waitCooldown = millis();
           score+= 200;
         }
       }

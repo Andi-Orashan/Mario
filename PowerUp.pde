@@ -39,6 +39,26 @@ public class PowerUp {
         pType = 'C'; //coin
         img = coinIMG;
         break;
+      case 6: // bricks
+        pType = 'C'; //coin
+        img = coinIMG;
+        break;
+      case 7: // bricks
+        pType = 'C'; //coin
+        img = coinIMG;
+        break;
+      case 8: // bricks
+        pType = 'C'; //coin
+        img = coinIMG;
+        break;
+      case 9: // bricks
+        pType = 'C'; //coin
+        img = coinIMG;
+        break;
+      case 10: // bricks
+        pType = 'S'; //super
+        img = powIMG[0];
+        break;
       }
   }
   public void disp() {

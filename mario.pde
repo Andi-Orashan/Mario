@@ -6,6 +6,7 @@ public ArrayList<Block> blockList = new ArrayList<Block>(); // A list of all the
 public ArrayList<Goomba> goombaList = new ArrayList<Goomba>();
 public ArrayList<Koopa> koopaList = new ArrayList<Koopa>();
 public ArrayList<PowerUp> powerList = new ArrayList<PowerUp>();
+public ArrayList<Coin> coinList = new ArrayList<Coin>();
 public int tempCoins;
 String line; // buffer variable to read text file. 
 public int TILESIZE = 40; //for scaling purposes
@@ -87,6 +88,7 @@ void loadImages() { //self explanatory.
   pImgs[1][3] = loadImage("shortBob-flipped-anime4.png");
   pImgs[2][0] = loadImage("Rjump.png");
   pImgs[2][1] = loadImage("Ljump.png");
+  pImgs[2][2] = loadImage("bobDie.png");
   tBImgs[0][0] = loadImage("tallBob-anime-1.png");
   tBImgs[0][1] = loadImage("tallBob-anime-2.png");
   tBImgs[0][2] = loadImage("tallBob-anime-3.png");
@@ -282,11 +284,17 @@ void draw() {
     image(bg, 0 - cameraOffset / 4, 0);
     fill(255);
     player.update();
+    for (Coin coin : coinList) {
+      coin.update();
+    }
     for (Goomba goomba : goombaList) {
       goomba.update();
     }
     for (Koopa koopa : koopaList) {
       koopa.update();
+    }
+    for (Coin coin : coinList) {
+      coin.disp();
     }
     for (Block block : blockList) {
       block.img.resize(TILESIZE, TILESIZE);
@@ -304,7 +312,7 @@ void draw() {
     flagpole.disp();
     player.disp();
     UI();
-    if(player.rect.y > 800){
+    if(player.rect.y > height + 200){
       player.dead = true;
     }
     if (player.lives <= 0) {

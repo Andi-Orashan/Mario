@@ -3,10 +3,11 @@ public class Coin {
   PVector pos;
   float grav = 17.4/60, velY;
   
-  public Coin (int x, int y) {
+  public Coin (float x, float y) {
     pos = new PVector();
     pos.x = x; pos.y = y;
-    velY = 4;
+    velY = -7;
+    player.coin++;
   }
   
   public void gravity() {
@@ -15,10 +16,11 @@ public class Coin {
   
   public void disp() {
     img = coinIMG;
-    image(img, pos.x, pos.y);
+    image(img, pos.x - cameraOffset, pos.y);
   }
   
   public void update() {
+    gravity();
     pos.y += velY;
   }
   
