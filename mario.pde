@@ -297,7 +297,7 @@ void draw() {
     text("- Press Left Key to go Left", 313,430);
     text("- Press the Up Key To Jump",305,330);
     text("- Press Backspace to Restart", 340,480);
-    
+    image(coinIMG,500,320);
     
     if (keyCode == ENTER || player.reset) {
       start = true;
