@@ -27,8 +27,8 @@ public class Player {
       metal = false;
     }
     
-    if (coin >= 10) { //10 coins is one life
-      coin -=10;
+    if (coin >= 25) { // 25 coins is one life
+      coin -= 25;
       lives++;
     }
     if (dead == true && big == true && inv == false) { // you get hit in big mode, you 

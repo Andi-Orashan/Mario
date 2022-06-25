@@ -31,6 +31,7 @@ public PImage upArrowKey;
 public PImage leftArrowKey;
 public PImage rightArrowKey;
 public PImage backspace;
+public PImage frontCoinIMG;
 Flag flagpole; // initialize flag object
 public PImage[][] pImgs = new PImage[3][4]; // player sprites 
 public PImage[][] tBImgs = new PImage[3][4]; // tall sprites
@@ -145,6 +146,7 @@ void loadImages() { // self-explanatory
   coinIMG = loadImage("coin.png");
   pUI = loadImage("shortBob-anime1.png");
   coinUI = loadImage("coin.png");
+  frontCoinIMG = loadImage("coin.png");
   goombaIMG = loadImage("goomba.png");
   koopaIMG = loadImage("koopa.png");
   shell = loadImage("koopaShell.png");
@@ -242,7 +244,6 @@ public void bReset() { // reset most variables, this is on death
   player = new Player();
   player.lives = tempLives + 1;
   player.coin = tempCoins;
-  player.reset = true;
   cameraOffset = 0;
 }
 
@@ -317,12 +318,12 @@ void draw() {
     text("- Press Left Key to go Left", 313,430);
     text("- Press the Up Key To Jump",305,330);
     text("- Press Backspace to Restart Level", 370,480);
-    coinIMG.resize(20,20);
-    image(coinIMG,180,160);
+    frontCoinIMG.resize(20,20);
+    image(frontCoinIMG,180,160);
     fill(0);
-    text("- get 10 coins for extra life",340,170);
+    text("- Get 25 coins for extra life",340,170);
     image(frontPowIMG[2],180,140);
-    text("-extra life",260,150);
+    text("-Extra life",260,150);
     fill(111);
     text("Press Delete to Restart Game", width/2, 520);
     
